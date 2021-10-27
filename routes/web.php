@@ -20,17 +20,19 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    if(Auth::user()->role) {
-        return view('admin.dashboard');
+    if (Auth::user()->role) {
+        return redirect('admin/dashboard');
     } else {
         return view('welcome');
     }
 })->name('dashboard');
 
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']], function () {
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum', 'verified']], function () {
-    Route::get('/dashboard', [AdminController::class, 'viewDashBoard']);
-    Route::get('/employee', [AdminController::class, 'viewEmployee']);
-    Route::get('/garages', [AdminController::class, 'viewGarages']);
-    Route::get('/profile', [AdminController::class, 'viewProfile']);
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('/dashboard', [AdminController::class, 'viewDashBoard']);
+        Route::get('/employee', [AdminController::class, 'viewEmployee']);
+        Route::get('/garages', [AdminController::class, 'viewGarages']);
+        Route::get('/profile', [AdminController::class, 'viewProfile']);
+    });
 });
