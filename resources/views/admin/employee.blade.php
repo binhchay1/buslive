@@ -138,7 +138,6 @@
     </div>
 </div>
 <!-- / Modal delete -->
-@endsection
 
 <style>
     table {
@@ -150,3 +149,4 @@
         counter-increment: tableCount;
     }
 </style>
+@endsection

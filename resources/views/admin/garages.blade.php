@@ -12,9 +12,7 @@
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
-                            <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                        class="form-control form-control-sm"
-                                        placeholder="Enter name, phone, role"></label></div>
+                            <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, phone, role"></label></div>
                         </div>
                     </div>
                     <div class="row">
@@ -34,19 +32,15 @@
                                     <td class="no"></td>
                                     <td>Bến xe Yên Nghĩa</td>
                                     <td id="bannerimage">
-                                        <img src="https://i.imgur.com/ZtdhrUA.jpg" width="250" height="30"/>
+                                        <img src="https://i.imgur.com/ZtdhrUA.jpg" width="250" height="30" />
                                     </td>
                                     <td>0934385152</td>
                                     <td>Hà Đông, Hà Nội</td>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-primary" id="edit_users"
-                                            data-name="Lê Quang Huy" data-phone="0934385154" data-role="admin"
-                                            data-id="1" data-toggle="modal" data-target="#editModal">
+                                        <button type="button" class="btn btn-primary" id="edit_users" data-name="Lê Quang Huy" data-phone="0934385154" data-role="admin" data-id="1" data-toggle="modal" data-target="#editModal">
                                             <i class="fas fa-edit"></i>
                                         </button>
-                                        <button type="button" class="btn btn-primary ml-1" data-id="1"
-                                            data-name="Lê Quang Huy" data-toggle="modal"
-                                            data-target="#deleteModal">
+                                        <button type="button" class="btn btn-primary ml-1" data-id="1" data-name="Lê Quang Huy" data-toggle="modal" data-target="#deleteModal">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -65,14 +59,9 @@
                         <div class="col-sm-12 col-md-7">
                             <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
                                 <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="example1_previous"><a
-                                            href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
-                                            class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example1"
-                                            data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item next" id="example1_next"><a href="#"
-                                            aria-controls="example1" data-dt-idx="7" tabindex="0"
-                                            class="page-link">Next</a>
+                                    <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+                                    <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
                                     </li>
                                 </ul>
                             </div>
@@ -142,7 +131,6 @@
     </div>
 </div>
 <!-- / Modal delete -->
-@endsection
 
 <style>
     table {
@@ -158,3 +146,4 @@
         width: 300px !important;
     }
 </style>
+@endsection

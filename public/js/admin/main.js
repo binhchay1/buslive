@@ -5,9 +5,9 @@ app.controller('switchCtrl', function ($scope) {
   let url = window.location.pathname;
   let type = url.slice(7);
   document.getElementById(type).className += " active";
-
+  
   $scope.nameMenu = capitalizeFirstLetter(type);
-
+  
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }

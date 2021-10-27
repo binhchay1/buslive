@@ -28,7 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']], function () {
-
     Route::group(['prefix' => 'admin'], function () {
         Route::get('/dashboard', [AdminController::class, 'viewDashBoard']);
         Route::get('/employee', [AdminController::class, 'viewEmployee']);
