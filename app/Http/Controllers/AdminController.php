@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -11,10 +12,12 @@ class AdminController extends Controller
     }
 
     public function viewEmployee() {
-        return view('admin.employee');
+        $data = DB::table('users')->paginate(10);
+        return view('admin.employee', ['data' => $data]);
     }
 
     public function viewGarages() {
+
         return view('admin.garages');
     }
 

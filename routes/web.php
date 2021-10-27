@@ -15,9 +15,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     if (Auth::user()->role) {
@@ -29,9 +27,24 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']], function () {
     Route::group(['prefix' => 'admin'], function () {
+
         Route::get('/dashboard', [AdminController::class, 'viewDashBoard']);
-        Route::get('/employee', [AdminController::class, 'viewEmployee']);
-        Route::get('/garages', [AdminController::class, 'viewGarages']);
         Route::get('/profile', [AdminController::class, 'viewProfile']);
+
+        Route::group(['prefix' => 'employee'], function () {
+            Route::get('/', [AdminController::class, 'viewEmployee']);
+            
+        });
+
+        Route::group(['prefix' => 'garages'], function () {
+            Route::get('/', [AdminController::class, 'viewGarages']);
+            
+        });          
+    });
+});
+
+Route::group(['middleware' => ['permission.visiter']], function () {
+    Route::get('/', function () {
+        return view('welcome');
     });
 });
