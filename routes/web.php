@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GaragesController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FeatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     if (Auth::user()->role) {
         return redirect('admin/dashboard');
     } else {
-        return view('welcome');
+        return view('pages/welcome');
     }
 })->name('dashboard');
 
@@ -50,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
 });
 
 Route::group(['middleware' => ['permission.visiter']], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', [FeatureController::class, 'viewWelcome']);
+    Route::get('/contact', [FeatureController::class, 'viewContact']);
+    Route::post('/contact/send', [FeatureController::class, 'sendContact']);
 });

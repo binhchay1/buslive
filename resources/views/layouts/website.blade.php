@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="plugins/choices.js/public/assets/styles/choices.css">
     <!-- Theme stylesheet-->
     <link rel="stylesheet" href="css/universal/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/pages/main.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="css/universal/custom.css">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -80,7 +81,7 @@
             </div>
         </div>
         <!-- Top bar end-->
-
+        <div class="alert mb-3 alert-success d-none" role="alert" id="alert-thank"> <strong>Thank you! </strong> Reply soon.</div>
         <!-- Navbar Sticky-->
         <header class="nav-holder make-sticky">
             <div class="navbar navbar-light bg-white navbar-expand-lg py-0" id="navbar">
@@ -180,7 +181,7 @@
 
         <div>
             @yield('content')
-        </div>                                                    
+        </div>
 
         <footer>
             <!-- MAIN FOOTER-->
@@ -217,7 +218,7 @@
                         </div>
                         <div class="col-md-6 text text-md-end">
                             <p class="mb-0 text-sm text-gray-500">Template designed by <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> &amp; <a href="https://hikershq.com/" target="_blank">HHQ</a> </p>
-                            
+
                         </div>
                     </div>
                 </div>

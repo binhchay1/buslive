@@ -84,43 +84,8 @@
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.334616542381!2d105.85670321540216!3d21.019293093476218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135abee0e6e5bef%3A0x280f2193fab565!2zVGjDtG5nIFThuqVuIFjDoyBWaeG7h3QgTmFtLCA1IEzDqiBUaMOhbmggVMO0bmcsIFBoYW4gQ2h1IFRyaW5oLCBIb8OgbiBLaeG6v20sIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1635420561743!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
+
 </section>
-
-<div class="modal fade right" id="modalThank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
-    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
-            </div>
-
-            <!--Body-->
-            <div class="modal-body">
-
-                <div class="row">
-                    <div class="col-3">
-                        <p></p>
-                        <p class="text-center"><i class="fas fa-shopping-cart fa-4x"></i></p>
-                    </div>
-
-                    <div class="col-9">
-                        <p>Thank for your attention! We will reply soon.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!--Footer-->
-            <div class="modal-footer justify-content-center">
-                <a type="button" href="/"class="btn btn-info">Back to homepage</a>
-            </div>
-        </div>
-        <!--/.Content-->
-    </div>
-</div>
-<!-- Modal: modalAbandonedCart-->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="plugins/leaflet/leaflet.js"></script>
