@@ -85,34 +85,14 @@
         <header class="nav-holder make-sticky">
             <div class="navbar navbar-light bg-white navbar-expand-lg py-0" id="navbar">
                 <div class="container py-3 py-lg-0 px-lg-0">
-                    <!-- Navbar brand--><a class="navbar-brand" href="index.html"><img class="d-none d-md-inline-block" src="img/logo.png" alt="Universal logo"><img class="d-inline-block d-md-none" src="img/logo-small.png" alt="Universal logo"><span class="sr-only">Universal - go to homepage</span></a>
+                    <!-- Navbar brand--><a class="navbar-brand" href="/"><img class="d-none d-md-inline-block" src="img/logo.png"><img class="d-inline-block d-md-none" src="img/logo-small.png" alt="Universal logo"><span class="sr-only">Universal - go to homepage</span></a>
                     <!-- Navbar toggler-->
                     <button class="navbar-toggler text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="sr-only">Toggle navigation</span><i class="fas fa-align-justify"></i></button>
                     <!-- Collapsed Navigation    -->
                     <div class="collapse navbar-collapse" id="navigationCollapse">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <!-- homepage dropdown-->
-                            <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" id="hpDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-                                <ul class="dropdown-menu" aria-labelledby="hpDropdown">
-                                    <li><a class="dropdown-item text-uppercase border-bottom active" href="index.html">Option 1: Default
-                                            Page </a></li>
-                                    <li><a class="dropdown-item text-uppercase border-bottom" href="index2.html">Option 2: Application
-                                        </a></li>
-                                    <li><a class="dropdown-item text-uppercase border-bottom" href="index3.html">Option 3: Startup </a>
-                                    </li>
-                                    <li><a class="dropdown-item text-uppercase border-bottom" href="index4.html">Option 4: Agency </a>
-                                    </li>
-                                    <!-- homepage submenu-->
-                                    <li class="dropdown-submenu dropend border-0 p-0"><a class="dropdown-item text-uppercase dropdown-submenu-toggle" href="#" role="button" aria-expanded="false">Dropdown link</a>
-                                        <ul class="dropdown-menu dropdown-submenu m-0">
-                                            <li><a class="dropdown-item text-uppercase border-bottom" href="">Action </a></li>
-                                            <li><a class="dropdown-item text-uppercase border-bottom" href="">Another action </a></li>
-                                            <li><a class="dropdown-item text-uppercase border-bottom" href="">Application </a></li>
-                                            <li><a class="dropdown-item text-uppercase border-bottom" href="">Something else here </a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="/">Home</a></li>
                             <!-- megamenu [features]-->
                             <li class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Features</a>
                                 <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu">
@@ -187,116 +167,7 @@
                                 </ul>
                             </li>
                             <!-- megamenu [all pages]-->
-                            <li class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="allPagesMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">All pages</a>
-                                <ul class="dropdown-menu megamenu p-4" aria-labelledby="allPagesMegamenu">
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-6 col-lg-3">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Home</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase active" href="index.html">Option 1: Default Page </a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="index2.html">Option 2:
-                                                            Application </a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="index3.html">Option 3:
-                                                            Startup </a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="index4.html">Option 4:
-                                                            Agency </a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="index5.html">Option 5:
-                                                            Portfolio </a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">About</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="about.html">About
-                                                            us</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="team.html">Our team</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="team-member.html">Team
-                                                            member</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="services.html">Services</a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Marketing</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="packages.html">Packages</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Portfolio</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-2.html">2
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-2.html">2 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-3.html">3
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-3.html">3 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-4.html">4
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-4.html">4 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-detail.html">Portfolio - detail</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-detail-2.html">Portfolio - detail 2</a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">User pages</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="customer-register.html">Register / login</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="customer-orders.html">Orders history</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="customer-order.html">Order history detail</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="customer-wishlist.html">Wishlist</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="customer-account.html">Customer account / change password</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Shop</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-category.html">Category - sidebar right</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-category-left.html">Category - sidebar left</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-category-full.html">Category - full width</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-detail.html">Product detail</a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Shop - order process</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-basket.html">Shopping cart</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-checkout1.html">Checkout - step 1</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-checkout2.html">Checkout - step 2</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-checkout3.html">
-                                                            Checkout - step 3</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="shop-checkout4.html">Checkout - step 4</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-md-6 col-lg-3">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Contact</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="contact.html">Contact</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="contact2.html">Contact
-                                                            - version 2</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="contact3.html">Contact
-                                                            - version 3</a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Pages</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="text.html">Text
-                                                            page</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="text-left.html">Text
-                                                            page - left sidebar</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="text-full.html">Text
-                                                            page - full width</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="faq.html"> FAQ</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="404.html">404 page</a>
-                                                    </li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Blog</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="blog.html">Blog listing
-                                                            big</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="blog-medium.html">Blog
-                                                            listing medium</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="blog-small.html">Blog
-                                                            listing small</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="blog-post.html">Blog
-                                                            Post</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                            <li class="nav-item"><a class="nav-link" id="allPagesMegamenu" href="#">All pages</a>
                             </li>
                             <!-- dropdown menu [contact]-->
                             <li class="nav-item"><a class="nav-link" id="contactMegamenu" href="/contact">Contact</a>
@@ -330,8 +201,9 @@
                         </div>
                         <div class="col-lg-6">
                             <h4 class="mb-3 text-uppercase">Contact</h4>
-                            <p class="text-uppercase text-sm text-gray-500">5 Lê Thánh Tông, Phan Chu Trinh, Hoàn Kiếm, Hà Nội
-                            </p>
+                            <p class="text-uppercase text-sm text-gray-500">5 Lê Thánh Tông, Phan Chu Trinh, Hoàn Kiếm, Hà Nội</p>
+                            <p class="text-uppercase text-sm text-gray-500">Phone: <strong>024.3976.3585</strong></p>
+                            <p class="text-uppercase text-sm text-gray-500">Fax: <strong>024.3976.1996</strong></p>
                         </div>
                     </div>
                 </div>
@@ -345,7 +217,7 @@
                         </div>
                         <div class="col-md-6 text text-md-end">
                             <p class="mb-0 text-sm text-gray-500">Template designed by <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> &amp; <a href="https://hikershq.com/" target="_blank">HHQ</a> </p>
-                            <!-- Please do not remove the backlink to us unless you purchase the Attribution-free License at https://bootstrapious.com/attribution-free-license. Thank you.-->
+                            
                         </div>
                     </div>
                 </div>

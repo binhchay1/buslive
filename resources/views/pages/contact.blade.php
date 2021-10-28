@@ -49,27 +49,28 @@
         <div class="row">
             <div class="col-lg-7 mx-auto">
                 <h2 class="lined lined-center text-uppercase mb-4">Contact form</h2>
-                <form action="#">
+                <form id="contact_send_form">
+                    @csrf
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label class="form-label" for="firstname">First Name</label>
-                            <input class="form-control" id="firstname" type="text">
+                            <input class="form-control" name="firstname" id="firstname" type="text" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label" for="lastname">Last Name</label>
-                            <input class="form-control" id="lastname" type="text">
+                            <input class="form-control" name="lastname" id="lastname" type="text" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label" for="emailaddress">Email Address</label>
-                            <input class="form-control" id="emailaddress" type="email">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input class="form-control" name="email" id="email" type="email" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label class="form-label" for="subject">Subject</label>
-                            <input class="form-control" id="subject" type="text">
+                            <input class="form-control" name="subject" id="subject" type="text" required>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label class="form-label" for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="4"></textarea>
+                            <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
                         </div>
                         <div class="col-md-12 text-center">
                             <button class="btn btn-outline-primary" type="submit"><i class="far fa-envelope me-2"></i>Send message</button>
@@ -84,6 +85,44 @@
         </div>
     </div>
 </section>
-<!-- MAP SECTION-->
+
+<div class="modal fade right" id="modalThank" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-3">
+                        <p></p>
+                        <p class="text-center"><i class="fas fa-shopping-cart fa-4x"></i></p>
+                    </div>
+
+                    <div class="col-9">
+                        <p>Thank for your attention! We will reply soon.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" href="/"class="btn btn-info">Back to homepage</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Modal: modalAbandonedCart-->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="plugins/leaflet/leaflet.js"></script>
+<script src="js/pages/contact.js"></script>
 @endsection
