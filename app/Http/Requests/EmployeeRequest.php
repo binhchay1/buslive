@@ -26,7 +26,6 @@ class EmployeeRequest extends FormRequest
         return [
             'name' => 'required|min:5|max:100',
             'email' => 'required|unique:users|max:255',
-            'password' => 'required|min:9|max:32',
         ];
     }
 }

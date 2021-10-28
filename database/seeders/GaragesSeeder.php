@@ -15,7 +15,7 @@ class GaragesSeeder extends Seeder
     public function run()
     {
         DB::table('garages')->insert([
-            'name' => 'Bến Xe Yên Nghĩa',
+            'name_garage' => 'Bến Xe Yên Nghĩa',
             'path_of_banner' => '/uploads/garages/1/banner.jpg',
             'phone' => '123456789',
             'address' => 'Hà Đông, Hà Nội'
