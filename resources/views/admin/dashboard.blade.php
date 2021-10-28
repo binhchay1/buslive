@@ -3,7 +3,7 @@
 @section('content')
 <!-- Main content -->
 <div class="content">
-    <div class="container-fluid" ng-controller="dashboardController">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6">
                 <div class="card">
@@ -84,5 +84,6 @@
         </div>
     </div>
 </div>
+<script src="{{ URL::to('/js/admin/dashboard.js') }}"></script>
 <!-- /Main content -->
 @endsection

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GaragesController;
+use App\Http\Controllers\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +34,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
         Route::get('/profile', [AdminController::class, 'viewProfile']);
 
         Route::group(['prefix' => 'employee'], function () {
-            Route::get('/', [AdminController::class, 'viewEmployee']);
-            
+            Route::get('/', [EmployeeController::class, 'viewEmployee']);
+            Route::post('/add', [EmployeeController::class, 'addEmployee']);
         });
 
         Route::group(['prefix' => 'garages'], function () {
-            Route::get('/', [AdminController::class, 'viewGarages']);
+            Route::get('/', [GaragesController::class, 'viewGarages']);
             
         });          
     });

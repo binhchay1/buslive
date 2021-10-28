@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    
     $('#editModal').on('show.bs.modal', function (event) {
         let button = $(event.relatedTarget)
         let id = button.data('id');

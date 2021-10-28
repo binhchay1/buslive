@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ URL::to('plugins/fontawesome-free/css/all.min.css') }}" />
   <link rel="stylesheet" href="{{ URL::to('css/admin/adminlte.min.css') }}" />
   <link rel="icon" href="{{ URL::to('img/icon.png') }}">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <!-- /Core Css -->
 
   <!-- Core JS -->
@@ -24,12 +25,13 @@
 
   <!-- Page JS -->
   <script src="{{ URL::to('/js/admin/main.js') }}"></script>
+  <script src="{{ mix('js/app.js') }}" defer></script>
   <!-- /Page JS -->
 
 </head>
 
-<body class="hold-transition sidebar-mini" ng-app="adminApp">
-  <div class="wrapper" ng-controller="switchCtrl">
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
       <!-- Left navbar links -->
@@ -51,25 +53,31 @@
               <img src="{{ URL::to('img/icon.png') }}" class="img-circle elevation-2" />
             </div>
             <div class="info">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->name }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="/profile">Profile</a>
-                  <div class="dropdown-divider"></div>
-                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button class="dropdown-item">{{ __('Sign out') }}</button>
-                  </form>
-                </div>
-              </li>
-            </div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ Auth::user()->name }}
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <div class="dropdown-divider"></div>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button class="dropdown-item">{{ __('Sign out') }}</button>
+            </form>
           </div>
         </li>
-      </ul>
-    </nav>
   </div>
+  </div>
+  </li>
+  </ul>
+  </nav>
+  </div>
+  @if (session('status'))
+  <div class="alert alert-success clearfix" role="alert" id="alert-message">
+    {{ session('status') }}
+  </div>
+  @endif
+
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -108,23 +116,26 @@
             </a>
           </li>
 
-          <li class="nav-item menu-open">
+          @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
             <a href="/admin/employee" class="nav-link" id="employee">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Employee
               </p>
             </a>
-          </li>
+            </li>
+            @endif
 
-          <li class="nav-item menu-open">
-            <a href="/admin/garages" class="nav-link" id="garages">
-              <i class="nav-icon fas fa-user"></i>
-              <p>
-                Garages
-              </p>
-            </a>
-          </li>
+            @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
+              <a href="/admin/garages" class="nav-link" id="garages">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                  Garages
+                </p>
+              </a>
+              </li>
+              @endif
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -139,9 +150,9 @@
       <div class="container-fluid">
         <div class="row mb-2 ml-2">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="admin/dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
             <li class="breadcrumb-item active"></li>
-            <p>@{{ nameMenu }}</p>
+            <p id="nameMenu"></p>
           </ol>
         </div>
       </div>
@@ -166,5 +177,15 @@
 
   </div>
 </body>
+<style>
+  #alert-message {
+    width: 20%;
+    display: block;
+    position: absolute;
+    top: 50;
+    right: 0;
+    margin-top: 5px;
+  }
+</style>
 
 </html>

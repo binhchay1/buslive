@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="container-fluid" ng-controller="garagesCtrl">
+    <div class="container-fluid">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title"></h3>
@@ -11,8 +11,11 @@
             <div class="card-body">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
-                        <div class="col-sm-12 col-md-6">
+                        <div class="col-sm-11">
                             <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, phone, role"></label></div>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Garage</button>
                         </div>
                     </div>
                     <div class="row">
@@ -21,58 +24,81 @@
                                 <thead>
                                     <tr role="row">
                                         <th tabindex="0" rowspan="1" colspan="1">STT</th>
-                                        <th tabindex="0" rowspan="1" colspan="1">Name of garages</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Name</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Banner</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Phone</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Address</th>
                                         <th tabindex="0" rowspan="1" colspan="1"></th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td class="no"></td>
-                                    <td>Bến xe Yên Nghĩa</td>
-                                    <td id="bannerimage">
-                                        <img src="https://i.imgur.com/ZtdhrUA.jpg" width="250" height="30" />
-                                    </td>
-                                    <td>0934385152</td>
-                                    <td>Hà Đông, Hà Nội</td>
-                                    <td class="text-center">
-                                        <button type="button" class="btn btn-primary" id="edit_users" data-name="Lê Quang Huy" data-phone="0934385154" data-role="admin" data-id="1" data-toggle="modal" data-target="#editModal">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-primary ml-1" data-id="1" data-name="Lê Quang Huy" data-toggle="modal" data-target="#deleteModal">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                    </td>
-                                </tr>
                                 <tbody>
+                                    @foreach($data as $garage)
+                                    <tr>
+                                        <td class="no"></td>
+                                        <td>{{ $garage->name }}</td>
+                                        <td id="bannerimage">
+                                            <img src="{{ $garage->path_of_banner }}" width="250" height="30" />
+                                        </td>
+                                        <td>{{ $garage->phone }}</td>
+                                        <td>{{ $garage->address }}</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-primary" id="edit_garage" data-name="{{ $garage->name }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#editModal">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-primary ml-1" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#deleteModal">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1
-                                to 10
-                                of 57 entries</div>
-                        </div>
-                        <div class="col-sm-12 col-md-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                    <li class="paginate_button page-item next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                {{ $data->links() }}
             </div>
             <!-- /.card-body -->
         </div>
     </div>
 </div>
+
+<!-- Modal add -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModal" aria-hidden="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="addModal">Add</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <form id="add_user_form" method="post" action="">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Banner</label>
+                        <input type="text" name="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone</label>
+                        <input type="text" name="phone" class="form-control" id="phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" name="address" class="form-control" id="address">
+                    </div>
+                    <div class="form-group d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary mr-2">Save</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Modal add -->
 
 <!-- Modal edit -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModal" aria-hidden="true" role="dialog">
@@ -131,7 +157,7 @@
     </div>
 </div>
 <!-- / Modal delete -->
-
+<script src="{{ URL::to('/js/admin/garages.js') }}"></script>
 <style>
     table {
         counter-reset: tableCount;

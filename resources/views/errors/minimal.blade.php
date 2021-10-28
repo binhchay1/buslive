@@ -551,9 +551,6 @@
                     @yield('message')
                 </div>
             </div>
-            <div class="mt-3 d-flex justify-content-center">
-                <a href="/" class="btn btn-primary">Back to Home Page</a>
-            </div>
         </div>
     </div>
 </body>
