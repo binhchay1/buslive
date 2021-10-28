@@ -42,7 +42,7 @@
             <div class="container px-lg-0 text-light py-1">
                 <div class="row d-flex align-items-center">
                     <div class="col-md-6 d-md-block d-none">
-                        <p class="mb-0 text-xs">Contact us on +420 777 555 333 or hello@universal.com.</p>
+                        <p class="mb-0 text-xs">Contact us on 024.3976.3585 or admin@buslive.com.</p>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-md-end justify-content-between">
@@ -95,31 +95,12 @@
                             <!-- homepage dropdown-->
                             <li class="nav-item dropdown"><a class="nav-link" href="/">Home</a></li>
                             <!-- megamenu [features]-->
-                            <li class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Features</a>
+                            <li class="nav-item dropdown menu-small"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ticket</a>
                                 <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu">
                                     <li>
                                         <div class="row">
-                                            <div class="col-lg-6"><img class="img-fluid d-none d-lg-block" src="img/template-easy-customize.png" alt=""></div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Shortcodes</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-accordions.html">Accordions</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-alerts.html">Alerts</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-buttons.html">Buttons</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-content-boxes.html">Content boxes</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-blocks.html">Horizontal blocks</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-pagination.html">Pagination</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-tabs.html">Tabs</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-typography.html">Typography</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Header variations</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-header-default.html">Default sticky header</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-header-nosticky.html">No sticky header</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="template-header-light.html">Light header</a></li>
-                                                </ul>
+                                            <div class="card">
+
                                             </div>
                                         </div>
                                     </li>

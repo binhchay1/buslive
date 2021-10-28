@@ -28,6 +28,7 @@
                                         <th tabindex="0" rowspan="1" colspan="1">Banner</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Phone</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Address</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">City</th>
                                         <th tabindex="0" rowspan="1" colspan="1"></th>
                                     </tr>
                                 </thead>
@@ -43,8 +44,9 @@
                                         </td>
                                         <td>{{ $garage->phone }}</td>
                                         <td>{{ $garage->address }}</td>
+                                        <td>{{ $garage->city }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $garage->id }}" data-name="{{ $garage->name_garage }}" data-banner="{{ $garage->path_of_banner }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $garage->id }}" data-name="{{ $garage->name_garage }}" data-banner="{{ $garage->path_of_banner }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-city="{{ $garage->city }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button type="button" class="btn btn-primary ml-1" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#deleteModal">
@@ -73,7 +75,7 @@
                 <h5 class="modal-title" id="addModal">Add</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body body-edit">
                 <form id="add_user_form" method="post" action="/admin/garages/add" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
@@ -91,6 +93,10 @@
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" name="address" class="form-control" id="address">
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">City</label>
+                        @include('admin.list-city')
                     </div>
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
@@ -129,6 +135,10 @@
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
                         <input type="text" name="address" class="form-control" id="address_edit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">City</label>
+                        @include('admin.list-city')
                     </div>
                     <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">

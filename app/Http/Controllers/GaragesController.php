@@ -41,6 +41,7 @@ class GaragesController extends Controller
         $garage->path_of_banner = $path . $imageName;
         $garage->phone = $input['phone'];
         $garage->address = $input['address'];
+        $garage->city = $input['city'];
 
         $garage->save();
 
@@ -60,7 +61,7 @@ class GaragesController extends Controller
             $request->banner->move(public_path($pathMove), $imageName);
 
             $garage = new Garages();
-            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'path_of_banner' => $path . $imageName, 'phone' => $request->phone, 'address' => $request->address]);
+            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'path_of_banner' => $path . $imageName, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
 
             if (file_exists(public_path($path))) {
                 unlink(public_path($path));
@@ -71,7 +72,7 @@ class GaragesController extends Controller
             $path = '';
 
             $garage = new Garages();
-            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'phone' => $request->phone, 'address' => $request->address]);
+            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
         }
 
 
