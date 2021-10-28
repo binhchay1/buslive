@@ -23,7 +23,7 @@
                             <table class="table table-bordered table-striped dataTable dtr-inline" role="grid">
                                 <thead>
                                     <tr role="row">
-                                        <th tabindex="0" rowspan="1" colspan="1">STT</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Id</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Name</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Banner</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Phone</th>
@@ -34,15 +34,17 @@
                                 <tbody>
                                     @foreach($data as $garage)
                                     <tr>
-                                        <td class="no"></td>
-                                        <td>{{ $garage->name }}</td>
+                                        <td>{{ $garage->id }}</td>
+                                        <td>{{ $garage->name_garage }}</td>
                                         <td id="bannerimage">
+                                            @if($garage->path_of_banner)
                                             <img src="{{ $garage->path_of_banner }}" width="250" height="30" />
+                                            @endif
                                         </td>
                                         <td>{{ $garage->phone }}</td>
                                         <td>{{ $garage->address }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_garage" data-name="{{ $garage->name }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $garage->id }}" data-name="{{ $garage->name_garage }}" data-banner="{{ $garage->path_of_banner }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button type="button" class="btn btn-primary ml-1" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#deleteModal">
@@ -72,14 +74,15 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                <form id="add_user_form" method="post" action="">
+                <form id="add_user_form" method="post" action="/admin/garages/add" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Banner</label>
-                        <input type="text" name="email" class="form-control" id="email">
+                        <label for="banner" class="form-label">Banner</label>
+                        <input type="file" name="banner" class="form-control" id="banner">
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
@@ -109,20 +112,25 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                <form id="edit_user_form" method="post" action="">
+                <form id="edit_user_form" method="post" action="/admin/garages/edit" enctype="multipart/form-data">
+                    @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name_edit" required>
                     </div>
                     <div class="mb-3">
-                        <label for="role" class="form-label">Role</label>
-                        <input type="text" name="role" class="form-control" id="role">
+                        <label for="banner" class="form-label">Banner</label>
+                        <input type="file" name="banner" class="form-control" id="banner_edit">
                     </div>
                     <div class="mb-3">
                         <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
+                        <input type="text" name="phone" class="form-control" id="phone_edit" required>
                     </div>
-                    <input type="hidden" name="id" id="id" />
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" name="address" class="form-control" id="address_edit" required>
+                    </div>
+                    <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -145,7 +153,8 @@
             <div class="modal-body">
                 <span class="lead">Are you sure about delete <span id="name_delete"></span> ?</span>
                 <br><br>
-                <form method="post" action="">
+                <form method="post" action="/admin/garages/delete">
+                    @csrf
                     <input type="hidden" name="id" id="id_delete" />
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Yes</button>
@@ -158,18 +167,5 @@
 </div>
 <!-- / Modal delete -->
 <script src="{{ URL::to('/js/admin/garages.js') }}"></script>
-<style>
-    table {
-        counter-reset: tableCount;
-    }
 
-    .no:before {
-        content: counter(tableCount);
-        counter-increment: tableCount;
-    }
-
-    #bannerimage {
-        width: 300px !important;
-    }
-</style>
 @endsection

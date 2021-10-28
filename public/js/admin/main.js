@@ -5,6 +5,10 @@ var nameMenu = capitalizeFirstLetter(type);
 $(document).ready(function () {
   document.getElementById(type).className += " active";
   document.getElementById('nameMenu').innerHTML = nameMenu;
+
+  $("#alert-message").fadeTo(2000, 500).slideUp(500, function () {
+    $("#alert-message").slideUp(500);
+  });
 });
 
 function capitalizeFirstLetter(string) {

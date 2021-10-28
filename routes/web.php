@@ -36,11 +36,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
         Route::group(['prefix' => 'employee'], function () {
             Route::get('/', [EmployeeController::class, 'viewEmployee']);
             Route::post('/add', [EmployeeController::class, 'addEmployee']);
+            Route::post('/edit', [EmployeeController::class, 'editEmployee']);
+            Route::post('/delete', [EmployeeController::class, 'deleteEmployee']);
         });
 
         Route::group(['prefix' => 'garages'], function () {
             Route::get('/', [GaragesController::class, 'viewGarages']);
-            
+            Route::post('/add', [GaragesController::class, 'addGarages']);
+            Route::post('/edit', [GaragesController::class, 'editGarages']);
+            Route::post('/delete', [GaragesController::class, 'deleteGarages']);
         });          
     });
 });

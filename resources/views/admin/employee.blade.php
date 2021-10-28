@@ -23,7 +23,7 @@
                             <table class="table table-bordered table-striped dataTable dtr-inline" role="grid">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting sorting_asc" tabindex="0" rowspan="1" colspan="1">STT</th>
+                                        <th class="sorting sorting_asc" tabindex="0" rowspan="1" colspan="1">Id</th>
                                         <th class="sorting" tabindex="0" rowspan="1" colspan="1">Name</th>
                                         <th class="sorting" tabindex="0" rowspan="1" colspan="1">Email</th>
                                         <th class="sorting" tabindex="0" rowspan="1" colspan="1">Role</th>
@@ -34,16 +34,16 @@
                                 <tbody>
                                     @foreach ($data['employee'] as $user)
                                     <tr>
-                                        <td class="no"></td>
+                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role == 2 ? 'Garage Manager' : 'Employee Manager' }}</td>
+                                        <td>{{ $user->role == 2 ? 'Garage Manager' : 'Garage Employee' }}</td>
                                         <td>{{ $user->name_garage }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_users" data-name="{{ $user->name }}" data-phone="0934385154" data-role="admin" data-id="1" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_users" data-id="{{ $user->id }}" data-name="{{ $user->name }}" data-email="{{ $user->email }}" data-role="{{ $user->role }}" data-garages="{{ $user->garages_id }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary ml-1" data-id="1" data-name="{{ $user->name }}" data-toggle="modal" data-target="#deleteModal">
+                                            <button type="button" class="btn btn-primary ml-1" data-id="{{ $user->id }}" data-toggle="modal" data-target="#deleteModal">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </td>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <!-- /.card-body -->
         </div>
@@ -76,14 +76,30 @@
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" class="form-control" id="name" required>
+                        @if($errors->has('name'))
+                        <div class="error text-danger">{{ $errors->first('name') }}</div>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" id="email" required>
+                        @if($errors->has('email'))
+                        <div class="error text-danger">{{ $errors->first('email') }}</div>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" id="password" required>
+                        @if($errors->has('password'))
+                        <div class="error text-danger">{{ $errors->first('password') }}</div>
+                        @endif
+                    </div>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-control form-select-sm" name="role">
+                            <option class="form-control" value="2">Garage Manager</option>
+                            <option class="form-control" value="3">Garage Employee</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="garages" class="form-label">Garages</label>
@@ -93,11 +109,6 @@
                             @endforeach
                         </select>
                     </div>
-                    @if(Auth::user()->role == 1)
-                    <input type="hidden" name="role" id="role" value="2">
-                    @else
-                    <input type="hidden" name="role" id="role" value="3">
-                    @endif
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -118,20 +129,31 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                <form id="edit_user_form" method="post" action="">
+                <form id="edit_user_form" method="post" action="/admin/employee/edit">
+                    @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name_edit" required>
+                        @if($errors->has('name'))
+                        <div class="error text-danger">{{ $errors->first('name') }}</div>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
-                        <input type="text" name="role" class="form-control" id="role">
+                        <select class="form-control form-select-sm" name="role" id="role_edit">
+                            <option class="form-control" value="2">Garage Manager</option>
+                            <option class="form-control" value="3">Garage Employee</option>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
+                        <label for="garages" class="form-label">Garages</label>
+                        <select class="form-control form-select-sm" name="garages" id="garages_edit">
+                            @foreach($data['garages'] as $garage)
+                            <option class="form-control" value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <input type="hidden" name="id" id="id" />
+                    <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -152,9 +174,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                <span class="lead">Are you sure about delete <span id="name_delete"></span> ?</span>
+                <span class="lead">Are you sure about delete ?</span>
                 <br><br>
-                <form method="post" action="">
+                <form method="post" action="/admin/employee/delete">
+                    @csrf
                     <input type="hidden" name="id" id="id_delete" />
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Yes</button>
@@ -167,14 +190,5 @@
 </div>
 <!-- / Modal delete -->
 <script src="{{ URL::to('/js/admin/employee.js') }}"></script>
-<style>
-    table {
-        counter-reset: tableCount;
-    }
 
-    .no:before {
-        content: counter(tableCount);
-        counter-increment: tableCount;
-    }
-</style>
 @endsection

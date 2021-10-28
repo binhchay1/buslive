@@ -78,6 +78,10 @@
   </div>
   @endif
 
+  @if($errors->any())
+  {!! implode('', $errors->all('<div class="alert alert-success clearfix" role="alert" id="alert-message">:message</div>')) !!}
+  @endif
+
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
