@@ -6,7 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GaragesController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FeatureController;
-
+use App\Http\Controllers\BusController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +46,14 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
             Route::post('/add', [GaragesController::class, 'addGarages']);
             Route::post('/edit', [GaragesController::class, 'editGarages']);
             Route::post('/delete', [GaragesController::class, 'deleteGarages']);
-        });          
+        });
+        
+        Route::group(['prefix' => 'bus'], function () {
+            Route::get('/', [BusController::class, 'viewBus']);
+            Route::post('/add', [BusController::class, 'addBus']);
+            Route::post('/edit', [BusController::class, 'editBus']);
+            Route::post('/delete', [BusController::class, 'deleteBus']);
+        });    
     });
 });
 

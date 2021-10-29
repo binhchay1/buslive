@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Garages;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
-use File;
 
 class GaragesController extends Controller
 {
@@ -81,8 +78,8 @@ class GaragesController extends Controller
 
     public function deleteGarages(Request $request)
     {
-        $users = Garages::where('id', $request->id)->first();
-        $users->delete();
+        $garage = Garages::where('id', $request->id)->first();
+        $garage->delete();
 
         return redirect('/admin/garages')->with('status', 'Garage deleted!');
     }
