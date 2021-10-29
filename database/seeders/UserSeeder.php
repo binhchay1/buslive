@@ -21,7 +21,8 @@ class UserSeeder extends Seeder
             'email' => 'admin@buslive.com',
             'email_verified_at' => '2021-10-27 07:23:38',
             'password' => Hash::make('123456789'),
-            'role' => 1
+            'role' => 1,
+            'created_at' => '2021-10-28 00:43:47'
         ]);
     }
 }

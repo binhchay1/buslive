@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ChangePasswordRequest;
 
 class AdminController extends Controller
 {
@@ -15,7 +17,12 @@ class AdminController extends Controller
 
     public function viewProfile()
     {
-        return view('admin.profile');
+        $data['subuser'] = DB::table('users')->where('id', Auth::user()->subuser)->first();
+
+        $data['garages'] = DB::table('users')->join('garages', 'users.garages_id', '=', 'garages.id')
+            ->select('garages.name_garage')->first();
+
+        return view('admin.profile', ['data' => $data]);
     }
 
     public function uploadAvatar(Request $request)
@@ -37,5 +44,22 @@ class AdminController extends Controller
         $request->avatar->move(public_path($pathMove), $imageName);
 
         return redirect('/admin/profile');
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $user = Auth::user();
+
+        $userPassword = $user->password;
+
+        if (!Hash::check($request->current_password, $userPassword)) {
+            return back()->withErrors(['current_password' => 'Password not match']);
+        }
+
+        $user->password = Hash::make($request->password);
+
+        $user->save();
+
+        return redirect()->back()->with('success', 'password successfully updated');
     }
 }

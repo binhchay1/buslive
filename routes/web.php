@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
         Route::get('/dashboard', [AdminController::class, 'viewDashBoard']);
         Route::get('/profile', [AdminController::class, 'viewProfile']);
         Route::post('/avatar', [AdminController::class, 'uploadAvatar']);
+        Route::post('/change/password', [AdminController::class, 'changePassword']);
 
         Route::group(['prefix' => 'employee'], function () {
             Route::get('/', [EmployeeController::class, 'viewEmployee']);

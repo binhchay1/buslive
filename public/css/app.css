@@ -1150,6 +1150,12 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.col-span-2 {
+	grid-column: span 2 / span 2;
+}
+.col-span-5 {
+	grid-column: span 5 / span 5;
+}
 .float-right {
 	float: right;
 }
@@ -1259,6 +1265,12 @@ select {
 }
 .mr-1 {
 	margin-right: 0.25rem;
+}
+.ml-5 {
+	margin-left: 1.25rem;
+}
+.mr-5 {
+	margin-right: 1.25rem;
 }
 .block {
 	display: block;

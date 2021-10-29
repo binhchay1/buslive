@@ -50,7 +50,7 @@
         <li class="nav-item">
           <div class="user-panel d-flex">
             <div class="image">
-              <img src="{{ URL::to(Auth::user()->profile_photo_path) }}" class="img-circle elevation-2" height="50"/>
+              <img src="{{ URL::to(Auth::user()->profile_photo_path) }}" class="img-circle elevation-2" height="50" />
             </div>
             <div class="info">
         <li class="nav-item dropdown">
@@ -59,6 +59,8 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/admin/profile">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/admin/profile">Change Password</a>
             <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
