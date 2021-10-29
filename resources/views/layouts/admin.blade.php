@@ -132,13 +132,23 @@
 
             @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
               <a href="/admin/garages" class="nav-link" id="garages">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-warehouse"></i>
                 <p>
                   Garages
                 </p>
               </a>
               </li>
               @endif
+
+              @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
+                <a href="/admin/bus" class="nav-link" id="bus">
+                  <i class="nav-icon fas fa-car-side"></i>
+                  <p>
+                    Bus
+                  </p>
+                </a>
+                </li>
+                @endif
 
         </ul>
       </nav>

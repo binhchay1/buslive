@@ -12,44 +12,36 @@
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-11">
-                        <div><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, phone, address" onkeyup="search()" id="garages_search"></label></div>
+                            <div><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, license plate" onkeyup="search()" id="bus_search"></label></div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Garage</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add Bus</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered table-striped dataTable dtr-inline" role="grid" id="garages_table">
+                            <table class="table table-bordered table-striped dataTable dtr-inline" role="grid" id="bus_table">
                                 <thead>
                                     <tr role="row">
                                         <th tabindex="0" rowspan="1" colspan="1">Id</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Name</th>
-                                        <th tabindex="0" rowspan="1" colspan="1">Banner</th>
-                                        <th tabindex="0" rowspan="1" colspan="1">Phone</th>
-                                        <th tabindex="0" rowspan="1" colspan="1">Address</th>
-                                        <th tabindex="0" rowspan="1" colspan="1">City</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">License Plate</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Garage</th>
                                         <th tabindex="0" rowspan="1" colspan="1"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($data as $garage)
+                                    @foreach($data['bus'] as $bus)
                                     <tr>
-                                        <td>{{ $garage->id }}</td>
-                                        <td>{{ $garage->name_garage }}</td>
-                                        <td id="bannerimage">
-                                            @if($garage->path_of_banner)
-                                            <img src="{{ $garage->path_of_banner }}" width="250" height="30" />
-                                            @endif
-                                        </td>
-                                        <td>{{ $garage->phone }}</td>
-                                        <td>{{ $garage->address }}</td>
-                                        <td>{{ $garage->city }}</td>
+                                        <td>{{ $bus->id }}</td>
+                                        <td>{{ $bus->name }}</td>
+                                        <td>{{ $bus->license_plate }}</td>
+                                        <td>{{ $bus->name_garage }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $garage->id }}" data-name="{{ $garage->name_garage }}" data-banner="{{ $garage->path_of_banner }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-city="{{ $garage->city }}" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $bus->id }}" data-name="{{ $bus->name }}" data-license="{{ $bus->license_plate }}" data-garages="{{ $bus->garages_id }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary ml-1" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#deleteModal">
+                                            <button type="button" class="btn btn-primary ml-1" data-id="{{ $bus->id }}" data-toggle="modal" data-target="#deleteModal">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </td>
@@ -60,7 +52,7 @@
                         </div>
                     </div>
                 </div>
-                {{ $data->links() }}
+                {{ $data['bus']->links() }}
             </div>
             <!-- /.card-body -->
         </div>
@@ -76,27 +68,23 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body body-edit">
-                <form id="add_user_form" method="post" action="/admin/garages/add" enctype="multipart/form-data">
+                <form id="add_user_form" method="post" action="/admin/bus/add" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" required>
+                        <input type="text" name="name" class="form-control" id="name_edit" required>
                     </div>
                     <div class="mb-3">
-                        <label for="banner" class="form-label">Banner</label>
-                        <input type="file" name="banner" class="form-control" id="banner">
+                        <label for="license_plate" class="form-label">License Plate</label>
+                        <input type="text" name="license_plate" class="form-control" id="license_plate_edit">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="phone">
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" class="form-control" id="address">
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">City</label>
-                        @include('admin.list-city')
+                        <label for="garages" class="form-label">Garages</label>
+                        <select class="form-control form-select-sm" name="garages" id="garages_edit">
+                            @foreach($data['garages'] as $garage)
+                            <option class="form-control" value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
@@ -118,27 +106,23 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
             </div>
             <div class="modal-body">
-                <form id="edit_user_form" method="post" action="/admin/garages/edit" enctype="multipart/form-data">
+                <form id="edit_user_form" method="post" action="/admin/bus/edit" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" name="name" class="form-control" id="name_edit" required>
                     </div>
                     <div class="mb-3">
-                        <label for="banner" class="form-label">Banner</label>
-                        <input type="file" name="banner" class="form-control" id="banner_edit">
+                        <label for="license_plate" class="form-label">License Plate</label>
+                        <input type="text" name="license_plate" class="form-control" id="license_plate_edit">
                     </div>
                     <div class="mb-3">
-                        <label for="phone" class="form-label">Phone</label>
-                        <input type="text" name="phone" class="form-control" id="phone_edit" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" class="form-control" id="address_edit" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="address" class="form-label">City</label>
-                        @include('admin.list-city')
+                        <label for="garages" class="form-label">Garages</label>
+                        <select class="form-control form-select-sm" name="garages" id="garages_edit">
+                            @foreach($data['garages'] as $garage)
+                            <option class="form-control" value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">
@@ -176,6 +160,6 @@
     </div>
 </div>
 <!-- / Modal delete -->
-<script src="{{ URL::to('/js/admin/garages.js') }}"></script>
+<script src="{{ URL::to('/js/admin/bus.js') }}"></script>
 
 @endsection

@@ -12,7 +12,7 @@
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                         <div class="col-sm-11">
-                            <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, phone, role"></label></div>
+                            <div><label>Search:<input type="search" class="form-control form-control-sm" placeholder="Enter name, email, role" onkeyup="search()" id="employee_search"></label></div>
                         </div>
                         <div>
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add employee</button>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <table class="table table-bordered table-striped dataTable dtr-inline" role="grid">
+                            <table class="table table-bordered table-striped dataTable dtr-inline" role="grid" id="employee_table">
                                 <thead>
                                     <tr role="row">
                                         <th class="sorting sorting_asc" tabindex="0" rowspan="1" colspan="1">Id</th>

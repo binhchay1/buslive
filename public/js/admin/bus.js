@@ -4,16 +4,15 @@ $(document).ready(function () {
         let button = $(event.relatedTarget)
         let id = button.data('id');
         let name = button.data('name');
-        let phone = button.data('phone');
-        let address = button.data('address');
-        let city = button.data('city');
+        let license = button.data('license');
+        let garages = button.data('garages');
         let modal = $(this);
 
         modal.find('.modal-body #id_edit').val(id);
         modal.find('.modal-body #name_edit').val(name);
-        modal.find('.modal-body #phone_edit').val(phone);
-        modal.find('.modal-body #address_edit').val(address);
-        modal.find('.modal-body #list-city').val(city);
+        modal.find('.modal-body #email_edit').val(license);
+
+        $("#garages_edit").val(garages);
     });
 
     $('#deleteModal').on('show.bs.modal', function (event) {
@@ -22,14 +21,15 @@ $(document).ready(function () {
         let modal = $(this);
 
         modal.find('.modal-body #id_delete').val(id);
+        modal.find('.modal-body #name_delete').text(name);
     });
 });
 
 function search() {
     var input, filter, table, tr, td, i;
-    input = document.getElementById("garages_search");
+    input = document.getElementById("bus_search");
     filter = input.value.toUpperCase();
-    table = document.getElementById("garages_table");
+    table = document.getElementById("bus_table");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
         if (i == 0) {
@@ -50,3 +50,4 @@ function search() {
         }
     }
 }
+
