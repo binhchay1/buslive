@@ -60,9 +60,6 @@ class GaragesController extends Controller
             $garage = new Garages();
             $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'path_of_banner' => $path . $imageName, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
 
-            if (file_exists(public_path($path))) {
-                unlink(public_path($path));
-            }
 
         } else {
             $imageName = '';
