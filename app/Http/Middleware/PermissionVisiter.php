@@ -20,7 +20,7 @@ class PermissionVisiter
         if (Auth::check() == false or Auth::user()->role === null ) {
             return $next($request);
         } else {
-            return view('errors.permission');
+            return redirect('/error/permission');
         } 
     }
 }

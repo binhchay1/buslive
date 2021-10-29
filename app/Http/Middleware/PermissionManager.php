@@ -20,7 +20,7 @@ class PermissionManager
         if (Auth::user()->role) {
             return $next($request);
         } else {
-            return view('errors.permission');
+            return redirect('/error/permission');
         } 
     }
 }

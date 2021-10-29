@@ -7,6 +7,7 @@ use App\Http\Controllers\GaragesController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\BusController;
+use App\Http\Controllers\ErrorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +28,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
         return view('pages/welcome');
     }
 })->name('dashboard');
+
+Route::get('/error/permission', [ErrorController::class, 'viewErrorPermission']);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']], function () {
     Route::group(['prefix' => 'admin'], function () {
