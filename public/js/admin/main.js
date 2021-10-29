@@ -3,8 +3,12 @@ var type = url.slice(7);
 var nameMenu = capitalizeFirstLetter(type);
 
 $(document).ready(function () {
-  document.getElementById(type).className += " active";
+  if(type == 'employee' || type == 'garages' || type == 'dashboard' || type == 'bus') {
+    document.getElementById(type).className += " active";
+  }
+  document.getElementById('nameHeader').innerHTML = nameMenu;
   document.getElementById('nameMenu').innerHTML = nameMenu;
+  
 
   $("#alert-message").fadeTo(2000, 500).slideUp(500, function () {
     $("#alert-message").slideUp(500);

@@ -50,7 +50,7 @@
         <li class="nav-item">
           <div class="user-panel d-flex">
             <div class="image">
-              <img src="{{ URL::to('img/icon.png') }}" class="img-circle elevation-2" />
+              <img src="{{ URL::to(Auth::user()->profile_photo_path) }}" class="img-circle elevation-2" height="50"/>
             </div>
             <div class="info">
         <li class="nav-item dropdown">
@@ -58,7 +58,7 @@
             {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/admin/profile">Profile</a>
             <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
@@ -87,7 +87,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="layout.html" class="brand-link">
+    <a href="/admin/dashboard" class="brand-link">
       <img src="{{ URL::to('img/icon.png') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">BusLive</span>
     </a>
@@ -160,17 +160,21 @@
   <!-- Page content -->
   <div class="content-wrapper">
     <!-- Header content-->
-    <div class="content-header">
+    <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2 ml-2">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-            <li class="breadcrumb-item active"></li>
-            <p id="nameMenu"></p>
-          </ol>
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 id="nameHeader"></h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+              <li class="breadcrumb-item active" id="nameMenu"></li>
+            </ol>
+          </div>
         </div>
-      </div>
-    </div>
+      </div><!-- /.container-fluid -->
+    </section>
     <!-- /Header content-->
 
     <div class="content">
