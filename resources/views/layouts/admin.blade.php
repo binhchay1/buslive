@@ -60,8 +60,6 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/admin/profile">Profile</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/admin/profile">Change Password</a>
-            <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
               <button class="dropdown-item">{{ __('Sign out') }}</button>
