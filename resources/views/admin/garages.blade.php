@@ -38,8 +38,8 @@
                                         <td>{{ $garage->id }}</td>
                                         <td>{{ $garage->name_garage }}</td>
                                         <td id="bannerimage">
-                                            @if($garage->path_of_banner)
-                                            <img src="{{ $garage->path_of_banner }}" width="250" height="30" />
+                                            @if($garage->path_of_banner != null)
+                                            <img src="{{ $garage->path_of_banner }}" width="250" style="max-height: 40px;" />
                                             @endif
                                         </td>
                                         <td>{{ $garage->phone }}</td>

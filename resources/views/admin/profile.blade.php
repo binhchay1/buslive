@@ -9,7 +9,9 @@
                 <div class="card card-primary card-outline">
                     <div class="card-body box-profile">
                         <div class="text-center">
+                            @if(Auth::user()->profile_photo_path != null)
                             <img class="profile-user-img img-fluid img-circle" src="{{ URL::to(Auth::user()->profile_photo_path) }}" style="height: 131px;">
+                            @endif
                         </div>
 
                         <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>

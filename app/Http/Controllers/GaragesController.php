@@ -51,7 +51,7 @@ class GaragesController extends Controller
             $path = '/uploads/garages/';
             $pathMove = 'uploads\garages';
 
-            $imageName = 'banner_' . time() . '._' . $input['name'] . '.' . $request->banner->extension();
+            $imageName = 'banner_' . time() . '._' . $request->name . '.' . $request->banner->extension();
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
             }
