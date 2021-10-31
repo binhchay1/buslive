@@ -23,6 +23,7 @@
     <!-- Favicon and apple touch icons-->
     <link rel="icon" href="{{ URL::to('img/icon.png') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
+
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
@@ -100,7 +101,17 @@
                                     <li>
                                         <div class="row">
                                             <div class="card">
-
+                                                <div class="mb-3">
+                                                    <label for="ticket-from" class="form-label">From</label>
+                                                    <select class="form-control" name="ticket-from" id="ticket-from" required>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="ticket-to" class="form-label">To</label>
+                                                    <select class="form-control" name="ticket-to" id="ticket-to" required>
+                                                    </select>
+                                                </div>
+                                                <button class="btn btn-primary mb-2" onclick="bookTicket()">Book</button>
                                             </div>
                                         </div>
                                     </li>
@@ -235,6 +246,31 @@
         // while using file:// protocol
         // pls don't forget to change to your domain :)
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script>
+        let url = '/get-city';
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response) {
+                for (i = 0; i < response.length; i++) {
+                    $("#ticket-from").append("<option value='" + response[i] + "'>" + response[i] + "</option>");
+                    $("#ticket-to").append("<option value='" + response[i] + "'>" + response[i] + "</option>");
+                }
+            }
+        });
+
+        function bookTicket() {
+            let from = document.getElementById("ticket-from");
+            let textFrom = from.options[from.selectedIndex].text;
+            let to = document.getElementById("ticket-to");
+            let textTo = to.options[to.selectedIndex].text;
+
+            let url = '/ticket?from=' + textFrom + '&to=' + textTo;
+
+            window.location.replace(url);
+        }
     </script>
     <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">

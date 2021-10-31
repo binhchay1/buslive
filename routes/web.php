@@ -20,14 +20,11 @@ use App\Http\Controllers\TestController;
 |
 */
 
-Route::get('/testapi', [TestController::class, 'create']);
-Route::post('/return-vnpay', [TestController::class, 'return']);
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     if (Auth::user()->role) {
         return redirect('admin/dashboard');
     } else {
-        return view('pages/welcome');
+        return redirect('/');
     }
 })->name('dashboard');
 
@@ -68,4 +65,6 @@ Route::group(['middleware' => ['permission.visiter']], function () {
     Route::get('/', [FeatureController::class, 'viewWelcome']);
     Route::get('/contact', [FeatureController::class, 'viewContact']);
     Route::post('/contact/send', [FeatureController::class, 'sendContact']);
+    Route::get('/get-city', [FeatureController::class, 'getCity']);
+    Route::get('/ticket', [FeatureController::class, 'bookTicket']);
 });
