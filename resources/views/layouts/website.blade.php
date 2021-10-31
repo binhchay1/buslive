@@ -149,7 +149,7 @@
                                 </ul>
                             </li>
                             <!-- megamenu [all pages]-->
-                            <li class="nav-item"><a class="nav-link" id="allPagesMegamenu" href="#">All pages</a>
+                            <li class="nav-item"><a class="nav-link" id="allPagesMegamenu" href="/testapi">All pages</a>
                             </li>
                             <!-- dropdown menu [contact]-->
                             <li class="nav-item"><a class="nav-link" id="contactMegamenu" href="/contact">Contact</a>

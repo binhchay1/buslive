@@ -8,6 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\ErrorController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,8 @@ use App\Http\Controllers\ErrorController;
 |
 */
 
-
+Route::get('/testapi', [TestController::class, 'create']);
+Route::post('/return-vnpay', [TestController::class, 'return']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     if (Auth::user()->role) {
