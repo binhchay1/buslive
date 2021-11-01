@@ -72,12 +72,4 @@ class GaragesController extends Controller
 
         return redirect('/admin/garages')->with('status', 'Garage edited!');
     }
-
-    public function deleteGarages(Request $request)
-    {
-        $garage = Garages::where('id', $request->id)->first();
-        $garage->delete();
-
-        return redirect('/admin/garages')->with('status', 'Garage deleted!');
-    }
 }

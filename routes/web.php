@@ -8,7 +8,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\ErrorController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\RoadsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,15 +49,21 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
             Route::get('/', [GaragesController::class, 'viewGarages']);
             Route::post('/add', [GaragesController::class, 'addGarages']);
             Route::post('/edit', [GaragesController::class, 'editGarages']);
-            Route::post('/delete', [GaragesController::class, 'deleteGarages']);
         });
-        
+
+        Route::group(['prefix' => 'roads'], function () {
+            Route::get('/', [RoadsController::class, 'viewRoads']);
+            Route::post('/add', [RoadsController::class, 'addRoads']);
+            Route::post('/edit', [RoadsController::class, 'editRoads']);
+            Route::post('/delete', [RoadsController::class, 'deleteRoads']);
+        });
+
         Route::group(['prefix' => 'bus'], function () {
             Route::get('/', [BusController::class, 'viewBus']);
             Route::post('/add', [BusController::class, 'addBus']);
             Route::post('/edit', [BusController::class, 'editBus']);
             Route::post('/delete', [BusController::class, 'deleteBus']);
-        });    
+        });
     });
 });
 

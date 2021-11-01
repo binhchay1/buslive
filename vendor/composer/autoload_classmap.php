@@ -21,7 +21,7 @@ return array(
     'App\\Http\\Controllers\\ErrorController' => $baseDir . '/app/Http/Controllers/ErrorController.php',
     'App\\Http\\Controllers\\FeatureController' => $baseDir . '/app/Http/Controllers/FeatureController.php',
     'App\\Http\\Controllers\\GaragesController' => $baseDir . '/app/Http/Controllers/GaragesController.php',
-    'App\\Http\\Controllers\\TestController' => $baseDir . '/app/Http/Controllers/TestController.php',
+    'App\\Http\\Controllers\\RoadsController' => $baseDir . '/app/Http/Controllers/RoadsController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

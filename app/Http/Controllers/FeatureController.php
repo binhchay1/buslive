@@ -46,6 +46,7 @@ class FeatureController extends Controller
         
         $data['from'] = $request->from;
         $data['to'] = $request->to;
+        $data['date'] = $request->date;
 
         $data['allCityFrom'] = DB::table('garages')->where('city', $data['from'])->get();
         $data['allCityTo'] = DB::table('garages')->where('city', $data['to'])->get();

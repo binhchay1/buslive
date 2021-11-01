@@ -3,7 +3,7 @@ var type = url.slice(7);
 var nameMenu = capitalizeFirstLetter(type);
 
 $(document).ready(function () {
-  if(type == 'employee' || type == 'garages' || type == 'dashboard' || type == 'bus') {
+  if(type == 'employee' || type == 'garages' || type == 'dashboard' || type == 'bus' || type == 'roads') {
     document.getElementById(type).className += " active";
   }
   document.getElementById('nameHeader').innerHTML = nameMenu;

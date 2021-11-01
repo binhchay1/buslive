@@ -49,9 +49,6 @@
                                             <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $garage->id }}" data-name="{{ $garage->name_garage }}" data-banner="{{ $garage->path_of_banner }}" data-phone="{{ $garage->phone }}" data-address="{{ $garage->address }}" data-city="{{ $garage->city }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <button type="button" class="btn btn-primary ml-1" data-id="{{ $garage->id }}" data-toggle="modal" data-target="#deleteModal">
-                                                <i class="fas fa-trash-alt"></i>
-                                            </button>
                                         </td>
                                     </tr>
                                     @endforeach

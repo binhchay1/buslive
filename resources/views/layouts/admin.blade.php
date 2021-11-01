@@ -150,6 +150,16 @@
                 </li>
                 @endif
 
+                @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
+                  <a href="/admin/roads" class="nav-link" id="roads">
+                    <i class="nav-icon fas fa-road"></i>
+                    <p>
+                      Roads
+                    </p>
+                  </a>
+                  </li>
+                  @endif
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
