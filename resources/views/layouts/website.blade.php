@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="plugins/swiper/swiper-bundle.min.css">
     <!-- Choices.js [Custom select]-->
     <link rel="stylesheet" href="plugins/choices.js/public/assets/styles/choices.css">
+    <link href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
     <!-- Theme stylesheet-->
+
     <link rel="stylesheet" href="css/universal/style.default.css" id="theme-stylesheet">
     <link rel="stylesheet" href="css/pages/main.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
@@ -23,6 +25,7 @@
     <!-- Favicon and apple touch icons-->
     <link rel="icon" href="{{ URL::to('img/icon.png') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
+    </script>
 
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="57x57" href="img/apple-touch-icon-57x57.png">
@@ -97,7 +100,7 @@
                             <li class="nav-item dropdown"><a class="nav-link" href="/">Home</a></li>
                             <!-- megamenu [features]-->
                             <li class="nav-item dropdown menu-small"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ticket</a>
-                                <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu">
+                                <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu" id="book-ticket">
                                     <li>
                                         <div class="row">
                                             <div class="card">
@@ -111,6 +114,11 @@
                                                     <select class="form-control" name="ticket-to" id="ticket-to" required>
                                                     </select>
                                                 </div>
+                                                <div class="mb-3">
+                                                    <label for="ticket-to" class="form-label">Date</label>
+                                                    <input type="text" id="datepicker" class="end_date" required>
+                                                </div>
+                                                <div class="form-group text-danger mb-2" id="error-book"></div>
                                                 <button class="btn btn-primary mb-2" onclick="bookTicket()">Book</button>
                                             </div>
                                         </div>
@@ -248,7 +256,15 @@
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
     </script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/external/jquery/jquery.js"></script>
+    <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $(function() {
+                $("#datepicker").datepicker();
+            });
+        });
+
         let url = '/get-city';
         $.ajax({
             type: "GET",
@@ -266,8 +282,18 @@
             let textFrom = from.options[from.selectedIndex].text;
             let to = document.getElementById("ticket-to");
             let textTo = to.options[to.selectedIndex].text;
+            let date = document.getElementById("datepicker");
 
-            let url = '/ticket?from=' + textFrom + '&to=' + textTo;
+            if (textFrom == textTo) {
+                error = 'From and To is same place!';
+                document.getElementById("error-book").innerHTML = error;
+                $("#book-ticket").click(function(e) {
+                    e.stopPropagation();
+                })
+                return;
+            }
+
+            let url = '/ticket?from=' + textFrom + '&to=' + textTo + '&date=' + date.value;
 
             window.location.replace(url);
         }
