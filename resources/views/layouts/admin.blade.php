@@ -160,6 +160,16 @@
                   </li>
                   @endif
 
+                  @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
+                    <a href="/admin/station" class="nav-link" id="station">
+                      <i class="nav-icon fas fa-parking"></i>
+                      <p>
+                        Station
+                      </p>
+                    </a>
+                    </li>
+                    @endif
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

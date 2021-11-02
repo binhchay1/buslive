@@ -39,6 +39,8 @@ return array(
     'App\\Models\\Bus' => $baseDir . '/app/Models/Bus.php',
     'App\\Models\\Contact' => $baseDir . '/app/Models/Contact.php',
     'App\\Models\\Garages' => $baseDir . '/app/Models/Garages.php',
+    'App\\Models\\Roads' => $baseDir . '/app/Models/Roads.php',
+    'App\\Models\\Station' => $baseDir . '/app/Models/Station.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',

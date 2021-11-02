@@ -28,7 +28,7 @@
                 <p class="text-gray-600 text-sm" id="text-from"><strong>{{ $data['from'] }}</strong></p>
             </div>
             <div class="col-lg-2 text-center">
-                <p><span style="font-size: 20px">{{ date_format(date_create($data['date ']),"Y-m-d") }}</span> <br><span style="font-size: 150px; margin-bottom:20px; color:#4fbfa8">&rarr;</span></p>
+                <p><span style="font-size: 20px">{{ date_format(date_create($data['date']),"Y-m-d") }}</span> <br><span style="font-size: 150px; margin-bottom:20px; color:#4fbfa8">&rarr;</span></p>
             </div>
             <div class="col-lg-5 block-icon-hover text-center">
                 <div class="icon icon-outlined icon-outlined-primary icon-thin mx-auto mb-3"><i class="fas fa-map-marker-alt"></i></div>

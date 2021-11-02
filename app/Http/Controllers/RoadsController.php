@@ -4,54 +4,68 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Roads;
+use App\Models\Station;
+use Illuminate\Support\Facades\DB;
 
 class RoadsController extends Controller
 {
-    public function viewGarages()
+    public function viewRoads()
     {
-        $data = Roads::paginate(10);
+        $data['roads'] = Roads::paginate(10);
+        $data['garages'] = DB::table('garages')->get();
+
+        foreach ($data['roads'] as $road) {
+            foreach($data['garages'] as $garage) {
+                if($road->garages_id_first == $garage->id) {
+                    $road->name_first = $garage->name_garage;
+                }
+                if($road->garages_id_second == $garage->id) {
+                    $road->name_second = $garage->name_garage;
+                }
+            }
+        }
+
         return view('admin.roads', ['data' => $data]);
     }
 
-    public function addGarages(Request $request)
+    public function addRoads(Request $request)
     {
         $input = $request->all();
 
+        if($input['garage1'] == $input['garage2']) {
+            return redirect('/admin/roads')->with('status', 'Garage 1 same Garage 2!');
+        }
+
+        $query = DB::table('roads')->where('garages_id_first', $input['garage1'])->where('garages_id_second', $input['garage2'])->get();
+        if($query->count() > 0) {
+            return redirect('/admin/roads')->with('status', 'Roads exists!');
+        }
+
         $road = new Roads();
 
-        $road->name_garage = $input['name'];
-        $road->phone = $input['phone'];
-        $road->address = $input['address'];
-        $road->city = $input['city'];
+        $road->garages_id_first = $input['garage1'];
+        $road->garages_id_second = $input['garage2'];
+        $road->cost = $input['cost'];
 
         $road->save();
 
-        return redirect('/admin/garages')->with('status', 'Garage added!');
+        return redirect('/admin/roads')->with('status', 'Roads added!');
     }
 
-    public function editGarages(Request $request)
+    public function editRoads(Request $request)
     {
-        if ($request->banner) {
-            $path = '/uploads/garages/';
-            $pathMove = 'uploads\garages';
+        $road = new Roads();
+        $road->where('id', $request->id)->update(['garages_id_first' => $request->garages_id_first, 'garages_id_second' => $request->garages_id_second, 'cost' => $request->cost]);
 
-            $imageName = 'banner_' . time() . '._' . $request->name . '.' . $request->banner->extension();
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-            $request->banner->move(public_path($pathMove), $imageName);
+        return redirect('/admin/roads')->with('status', 'Roads edited!');
+    }
 
-            $road = new Roads();
-            $road->where('id', $request->id)->update(['name_garage' => $request->name, 'path_of_banner' => $path . $imageName, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
-        } else {
-            $imageName = '';
-            $path = '';
+    public function deleteRoads(Request $request)
+    {
+        $road = Roads::where('id', $request->id)->first();
+        $station = Station::where('roads_id', $request->id)->delete();
+        $road->delete();
 
-            $road = new Roads();
-            $road->where('id', $request->id)->update(['name_garage' => $request->name, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
-        }
-
-
-        return redirect('/admin/garages')->with('status', 'Garage edited!');
+        return redirect('/admin/roads')->with('status', 'Roads deleted!');
     }
 }

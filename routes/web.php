@@ -9,6 +9,7 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\RoadsController;
+use App\Http\Controllers\StationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,6 +64,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'permission.manager']
             Route::post('/add', [BusController::class, 'addBus']);
             Route::post('/edit', [BusController::class, 'editBus']);
             Route::post('/delete', [BusController::class, 'deleteBus']);
+        });
+
+        Route::group(['prefix' => 'station'], function () {
+            Route::get('/', [StationController::class, 'viewStation']);
+            Route::post('/add', [StationController::class, 'addStation']);
+            Route::post('/edit', [StationController::class, 'editStation']);
+            Route::post('/delete', [StationController::class, 'deleteStation']);
         });
     });
 });
