@@ -77,19 +77,19 @@
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" class="form-control" id="name" onkeypress='validate(event)' required>
+                        <input type="text" name="name" class="form-control" id="name" required>
                     </div>
                     <div class="mb-3">
                         <label for="address" class="form-label">Address</label>
-                        <input type="text" name="address" class="form-control" id="address" onkeypress='validate(event)' required>
+                        <input type="text" name="address" class="form-control" id="address" required>
                     </div>
                     <div class="mb-3">
                         <label for="cost_first" class="form-label">Cost 1</label>
-                        <input type="text" name="cost_first" class="form-control" id="cost_first" onkeypress='validate(event)' required>
+                        <input type="text" name="cost_first" class="form-control" id="cost_first" required>
                     </div>
                     <div class="mb-3">
                         <label for="cost_second" class="form-label">Cost 2</label>
-                        <input type="text" name="cost_second" class="form-control" id="cost_second" onkeypress='validate(event)' required>
+                        <input type="text" name="cost_second" class="form-control" id="cost_second" required>
                     </div>
                     <div class="mb-3">
                         <label for="road" class="form-label">Road</label>

@@ -36,27 +36,46 @@
                 <p class="text-gray-600 text-sm" id="text-to"><strong>{{ $data['to'] }}</strong></p>
             </div>
         </div>
+        <form>
+            @csrf
+            <input type="hidden" name="date" value="{{ $data['date'] }}">
+            <div class="row gy-5 mb-5">
+                <div class="col-lg-5 block-icon-hover text-center">
+                    <h4 class="text-uppercase mb-3">From Garages</h4>
+                    <select class="form-control" name="from" id="from" required>
+                        @foreach($data['allGarageFrom'] as $garage)
+                        <option value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-lg-2 text-center">
+                </div>
+                <div class="col-lg-5 block-icon-hover text-center">
+                    <h4 class="text-uppercase mb-3">To Garages</h4>
+                    <input class="form-control" name="to" id="to" disabled>
+                </div>
+            </div>
 
-        <div class="row gy-5 mb-5">
-            <div class="col-lg-5 block-icon-hover text-center">
-                <h4 class="text-uppercase mb-3">Choose Garages</h4>
-                <select class="form-control" name="from" id="from" required>
-                    @foreach($data['allCityFrom'] as $garage)
-                    <option value="{{ $garage->name_garage }}">{{ $garage->name_garage }}</option>
-                    @endforeach
-                </select>
+            <div class="row gy-5 mb-5">
+                <div class="col-lg-5 block-icon-hover text-center">
+                    <h4 class="text-uppercase mb-3">Option( Choose from station )</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'from garage')</p>
+                    <select class="form-control" name="station_from" id="station_from" required>
+                        <option value="0">blank</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 text-center">
+                </div>
+                <div class="col-lg-5 block-icon-hover text-center">
+                    <h4 class="text-uppercase mb-3">Option( Choose to station )</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'to garage')</p>
+                    <select class="form-control" name="station_to" id="station_to" required>
+                        <option value="0">blank</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-lg-2 text-center">
-            </div>
-            <div class="col-lg-5 block-icon-hover text-center">
-                <h4 class="text-uppercase mb-3">Choose Garages</h4>
-                <select class="form-control" name="to" id="to" required>
-                    @foreach($data['allCityTo'] as $garage)
-                    <option value="{{ $garage->name_garage }}">{{ $garage->name_garage }}</option>
-                    @endforeach
-                </select>
-            </div>
-        </div>
+        </form>
+
 
     </div>
 
@@ -64,4 +83,9 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="js/pages/ticket.js"></script>
+<script>
+    var road = <?php echo json_encode($data['roads']) ?>;
+    var garagesTo = <?php echo json_encode($data['allGarageTo']) ?>;
+    var station = <?php echo json_encode($data['station']) ?>;
+</script>
 @endsection

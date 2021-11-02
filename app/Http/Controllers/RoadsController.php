@@ -36,8 +36,9 @@ class RoadsController extends Controller
             return redirect('/admin/roads')->with('status', 'Garage 1 same Garage 2!');
         }
 
-        $query = DB::table('roads')->where('garages_id_first', $input['garage1'])->where('garages_id_second', $input['garage2'])->get();
-        if($query->count() > 0) {
+        $query1 = DB::table('roads')->where('garages_id_first', $input['garage1'])->where('garages_id_second', $input['garage2'])->get();
+        $query2 = DB::table('roads')->where('garages_id_first', $input['garage2'])->where('garages_id_second', $input['garage1'])->get();
+        if($query1->count() > 0 or $query2->count() > 0) {
             return redirect('/admin/roads')->with('status', 'Roads exists!');
         }
 

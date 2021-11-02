@@ -48,8 +48,11 @@ class FeatureController extends Controller
         $data['to'] = $request->to;
         $data['date'] = $request->date;
 
-        $data['allCityFrom'] = DB::table('garages')->where('city', $data['from'])->get();
-        $data['allCityTo'] = DB::table('garages')->where('city', $data['to'])->get();
+        $data['allGarageFrom'] = DB::table('garages')->where('city', $data['from'])->get();
+        $data['allGarageTo'] = DB::table('garages')->where('city', $data['to'])->get();
+        $data['station'] = DB::table('station')->get();
+        
+        $data['roads'] = DB::table('roads')->get();
 
         return view('pages.ticket', ['data' => $data]);
     }
