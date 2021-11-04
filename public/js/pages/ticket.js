@@ -4,7 +4,7 @@ var roadId = 0;
 $(document).ready(function () {
     setRoad();
     setStation();
-
+    getTimeOfBus();
     $('#from').on('change', function () {
         setRoad();
     });
@@ -46,10 +46,21 @@ function setStation() {
     }
 }
 
+function getTimeOfBus() {
+    $.ajax({
+        url: '/gettime?road_id=' + roadId + '&',
+        type: 'GET',
+        success: function (res) {
+            console.log(res);
+            alert(res);
+        }
+    });
+}
+
 function setSet() {
     for (i = 1; i <= 45; i++) {
         if (i == 20) {
-            $("#bus-seat").append("<button id='seat-in-bus-" + i + "' type='button' class='seat m-3' data-toggle='tooltip' data-placement='top' title=''>" + i + "</button><br>");        
+            $("#bus-seat").append("<button id='seat-in-bus-" + i + "' type='button' class='seat m-3' data-toggle='tooltip' data-placement='top' title=''>" + i + "</button><br>");
         }
     }
 }

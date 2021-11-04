@@ -27,6 +27,8 @@
                                         <th tabindex="0" rowspan="1" colspan="1">Name</th>
                                         <th tabindex="0" rowspan="1" colspan="1">License Plate</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Garage</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Road</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Time Go</th>
                                         <th tabindex="0" rowspan="1" colspan="1"></th>
                                     </tr>
                                 </thead>
@@ -37,6 +39,8 @@
                                         <td>{{ $bus->name }}</td>
                                         <td>{{ $bus->license_plate }}</td>
                                         <td>{{ $bus->name_garage }}</td>
+                                        <td>{{ $bus->two_point }}</td>
+                                        <td>{{ $bus->time_go }}</td>
                                         <td class="text-center">
                                             <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $bus->id }}" data-name="{{ $bus->name }}" data-license="{{ $bus->license_plate }}" data-garages="{{ $bus->garages_id }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
@@ -86,6 +90,18 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mb-3">
+                        <label for="roads_id" class="form-label">Road</label>
+                        <select class="form-control form-select-sm" name="roads_id" id="roads_id">
+                            @foreach($data['roads'] as $road)
+                            <option class="form-control" value="{{ $road->id }}">{{ $road->two_point }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_go" class="form-label">Road</label>
+                        <input type="time" name="time_go" class="form-control" id="time_go_edit" required>
+                    </div>
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -114,7 +130,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="license_plate" class="form-label">License Plate</label>
-                        <input type="text" name="license_plate" class="form-control" id="license_plate_edit">
+                        <input type="text" name="license_plate" class="form-control" id="license_plate_edit" required>
                     </div>
                     <div class="mb-3">
                         <label for="garages" class="form-label">Garages</label>
@@ -123,6 +139,18 @@
                             <option class="form-control" value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="roads_id" class="form-label">Road</label>
+                        <select class="form-control form-select-sm" name="roads_id" id="roads_id_edit">
+                            @foreach($data['roads'] as $road)
+                            <option class="form-control" value="{{ $road->id }}">{{ $road->two_point }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_go" class="form-label">Road</label>
+                        <input type="time" name="time_go" class="form-control" id="time_go_edit" required>
                     </div>
                     <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">

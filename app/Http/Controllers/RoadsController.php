@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Roads;
 use App\Models\Station;
+use App\Models\Bus;
 use Illuminate\Support\Facades\DB;
 
 class RoadsController extends Controller
@@ -65,6 +66,7 @@ class RoadsController extends Controller
     {
         $road = Roads::where('id', $request->id)->first();
         $station = Station::where('roads_id', $request->id)->delete();
+        $bus = Bus::where('roads_id', $request->id)->delete();
         $road->delete();
 
         return redirect('/admin/roads')->with('status', 'Roads deleted!');

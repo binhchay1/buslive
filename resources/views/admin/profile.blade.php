@@ -11,6 +11,8 @@
                         <div class="text-center">
                             @if(Auth::user()->profile_photo_path != null)
                             <img class="profile-user-img img-fluid img-circle" src="{{ URL::to(Auth::user()->profile_photo_path) }}" style="height: 131px;">
+                            @else
+                            <img class="profile-user-img img-fluid img-circle" src="{{ URL::to('/img/default_avatar.png') }}" style="height: 131px;" />
                             @endif
                         </div>
 
@@ -82,7 +84,7 @@
         </div>
         <div class="">
             <form action="/admin/change/password" method="post" class="needs-validation">
-            @csrf
+                @csrf
                 <div class="px-4 py-5 bg-white sm:p-6 shadow sm:rounded-tl-md sm:rounded-tr-md">
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-4">
@@ -91,9 +93,9 @@
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="current_password" type="password" name="current_password" autocomplete="current-password">
                             @error('current_password')
-                                <span class="invalid-feedback">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
 
@@ -103,9 +105,9 @@
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="password" type="password" name="password" autocomplete="new-password">
                             @error('password')
-                                <span class="invalid-feedback">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
 
@@ -115,9 +117,9 @@
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="confirm_password" type="password" name="confirm_password" autocomplete="new-password">
                             @error('confirm_password')
-                                <span class="invalid-feedback">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                            <span class="invalid-feedback">
+                                <strong>{{ $message }}</strong>
+                            </span>
                             @enderror
                         </div>
                     </div>

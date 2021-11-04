@@ -156,7 +156,7 @@
             <div class="modal-body">
                 <span class="lead">Are you sure about delete ?</span>
                 <br>
-                <span class="lead text-red-400">(* If delete this, all station of this road will  be deleted!)</span>
+                <span class="lead text-red-400">(* If delete this, all station and bus of this road will  be deleted!)</span>
                 <br><br>
                 <form method="post" action="/admin/roads/delete">
                     @csrf

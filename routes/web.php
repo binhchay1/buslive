@@ -81,4 +81,5 @@ Route::group(['middleware' => ['permission.visiter']], function () {
     Route::post('/contact/send', [FeatureController::class, 'sendContact']);
     Route::get('/get-city', [FeatureController::class, 'getCity']);
     Route::get('/ticket', [FeatureController::class, 'bookTicket']);
+    Route::get('/gettime', [FeatureController::class, 'getTime']);
 });

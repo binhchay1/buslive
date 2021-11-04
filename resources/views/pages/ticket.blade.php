@@ -75,10 +75,15 @@
                     </select>
                 </div>
             </div>
-            <div class="mb-5">
-                <div class="rectangle" id="bus-seat">
+            <div class="row gy-5 mb-5">
+                <div class="col-lg-5">
+                    <select class="form-control" name="station_from" id="station_from" required>
+                    </select>
+                </div>
+                <div class="col-lg-2 text-center">
+                </div>
+                <div class="col-lg-5 rectangle" id="bus-seat">
                     <button type="button" class="seat m-3" data-toggle="tooltip" data-placement="top" title=""> 23 </button><br>
-                    
                 </div>
             </div>
         </form>

@@ -50,7 +50,11 @@
         <li class="nav-item">
           <div class="user-panel d-flex">
             <div class="image">
+              @if(Auth::user()->profile_photo_path)
               <img src="{{ URL::to(Auth::user()->profile_photo_path) }}" class="img-circle elevation-2" height="50" />
+              @else
+              <img src="{{ URL::to('/img/default_avatar.png') }}" class="img-circle elevation-2" height="50" />
+              @endif
             </div>
             <div class="info">
         <li class="nav-item dropdown">

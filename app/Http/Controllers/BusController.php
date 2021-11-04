@@ -15,6 +15,25 @@ class BusController extends Controller
             ->paginate(15);
 
         $data['garages'] = DB::table('garages')->get();
+        $data['roads'] = DB::table('roads')->get();
+
+        foreach ($data['bus'] as $bus) {
+            foreach ($data['roads'] as $road) {
+                if($bus->roads_id == $road->id) {
+                    $garage1 = DB::table('garages')->where('id', $road->garages_id_first)->first();
+                    $garage2 = DB::table('garages')->where('id', $road->garages_id_second)->first();
+                    $bus->two_point = $garage1->name_garage . ' <-> ' . $garage2->name_garage;
+                }
+            }
+        }
+
+        foreach ($data['roads'] as $road) {
+            if($bus->roads_id == $road->id) {
+                $garage1 = DB::table('garages')->where('id', $road->garages_id_first)->first();
+                $garage2 = DB::table('garages')->where('id', $road->garages_id_second)->first();
+                $road->two_point = $garage1->name_garage . ' <-> ' . $garage2->name_garage;
+            }
+        }
 
         return view('admin.bus', ['data' => $data]);
     }
@@ -28,6 +47,8 @@ class BusController extends Controller
         $bus->name = $input['name'];
         $bus->license_plate = $input['license_plate'];
         $bus->garages_id = $input['garages'];
+        $bus->roads_id = $input['roads_id'];
+        $bus->time_go = $input['time_go'];
 
         $bus->save();
 
@@ -37,7 +58,7 @@ class BusController extends Controller
     public function editBus(Request $request)
     {
         $bus = new Bus();
-        $bus->where('id', $request->id)->update(['name' => $request->name, 'license_plate' => $request->license_plate, 'garages_id' => $request->garages]);
+        $bus->where('id', $request->id)->update(['name' => $request->name, 'license_plate' => $request->license_plate, 'garages_id' => $request->garages, 'roads_id' => $request->roads_id, 'time_go' => $request->time_go]);
         return redirect('/admin/bus')->with('status', 'Bus edited!');
     }
 

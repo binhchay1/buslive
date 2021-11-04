@@ -56,4 +56,8 @@ class FeatureController extends Controller
 
         return view('pages.ticket', ['data' => $data]);
     }
+
+    public function getTime(Request $request) {
+        $data['bus'] = DB::table('bus')->select('time_go')->get();
+    }
 }
