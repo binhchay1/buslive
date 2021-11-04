@@ -29,6 +29,7 @@
                                         <th tabindex="0" rowspan="1" colspan="1">Garage</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Road</th>
                                         <th tabindex="0" rowspan="1" colspan="1">Time Go</th>
+                                        <th tabindex="0" rowspan="1" colspan="1">Time Arrival</th>
                                         <th tabindex="0" rowspan="1" colspan="1"></th>
                                     </tr>
                                 </thead>
@@ -41,8 +42,9 @@
                                         <td>{{ $bus->name_garage }}</td>
                                         <td>{{ $bus->two_point }}</td>
                                         <td>{{ $bus->time_go }}</td>
+                                        <td>{{ $bus->time_arrival }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $bus->id }}" data-name="{{ $bus->name }}" data-license="{{ $bus->license_plate }}" data-garages="{{ $bus->garages_id }}" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_garage" data-id="{{ $bus->id }}" data-name="{{ $bus->name }}" data-license="{{ $bus->license_plate }}" data-garages="{{ $bus->garages_id }}" data-two_point="{{ $bus->two_point }}" data-time_go="{{ $bus->time_go }}" data-time_arrival="{{ $bus->time_arrival }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button type="button" class="btn btn-primary ml-1" data-id="{{ $bus->id }}" data-toggle="modal" data-target="#deleteModal">
@@ -99,8 +101,12 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="time_go" class="form-label">Road</label>
-                        <input type="time" name="time_go" class="form-control" id="time_go_edit" required>
+                        <label for="time_go" class="form-label">Time Go</label>
+                        <input type="time" name="time_go" class="form-control" id="time_go" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_arrival" class="form-label">Time Arrival</label>
+                        <input type="time" name="time_arrival" class="form-control" id="time_arrival" required>
                     </div>
                     <div class="form-group d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary mr-2">Save</button>
@@ -149,8 +155,12 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="time_go" class="form-label">Road</label>
+                        <label for="time_go" class="form-label">Time Go</label>
                         <input type="time" name="time_go" class="form-control" id="time_go_edit" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time_arrival" class="form-label">Time Arrival</label>
+                        <input type="time" name="time_arrival" class="form-control" id="time_arrival_edit" required>
                     </div>
                     <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">

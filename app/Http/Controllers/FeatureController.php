@@ -58,6 +58,8 @@ class FeatureController extends Controller
     }
 
     public function getTime(Request $request) {
-        $data['bus'] = DB::table('bus')->select('time_go')->get();
+        $data = DB::table('bus')->where('roads_id', $request->roads_id)->get();
+
+        return $data;
     }
 }

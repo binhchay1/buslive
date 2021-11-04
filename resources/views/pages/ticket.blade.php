@@ -76,8 +76,9 @@
                 </div>
             </div>
             <div class="row gy-5 mb-5">
-                <div class="col-lg-5">
-                    <select class="form-control" name="station_from" id="station_from" required>
+                <div class="col-lg-5 text-center">
+                    <h4 class="text-uppercase mb-3">Pick time</h4>
+                    <select class="form-control" name="time_go" id="time_go" required>
                     </select>
                 </div>
                 <div class="col-lg-2 text-center">

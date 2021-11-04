@@ -5,8 +5,18 @@ $(document).ready(function () {
     setRoad();
     setStation();
     getTimeOfBus();
+
     $('#from').on('change', function () {
         setRoad();
+        getTimeOfBus('nonStation');
+    });
+
+    $('#station_from').on('change', function () {
+        getTimeOfBus('station');
+    });
+
+    $('#station_to').on('change', function () {
+        getTimeOfBus('station');
     });
 });
 
@@ -46,13 +56,21 @@ function setStation() {
     }
 }
 
-function getTimeOfBus() {
+function getTimeOfBus(type) {
     $.ajax({
-        url: '/gettime?road_id=' + roadId + '&',
+        url: '/gettime?roads_id=' + roadId,
         type: 'GET',
         success: function (res) {
-            console.log(res);
-            alert(res);
+            for (i of res) {
+                if (i.roads_id == roadId) {
+                    if (type == 'nonStation') {
+                        $("#time_go").append("<option value='" + i.time_go + "'>" + i.time_go + "</option>");
+                    } else {
+                        i.time_go = 
+                        $("#time_go").append("<option value='" + i.time_go + "'>" + i.time_go + "</option>");
+                    }
+                }
+            }
         }
     });
 }

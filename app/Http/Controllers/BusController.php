@@ -49,6 +49,7 @@ class BusController extends Controller
         $bus->garages_id = $input['garages'];
         $bus->roads_id = $input['roads_id'];
         $bus->time_go = $input['time_go'];
+        $bus->time_arrival = $input['time_arrival'];
 
         $bus->save();
 
@@ -58,7 +59,7 @@ class BusController extends Controller
     public function editBus(Request $request)
     {
         $bus = new Bus();
-        $bus->where('id', $request->id)->update(['name' => $request->name, 'license_plate' => $request->license_plate, 'garages_id' => $request->garages, 'roads_id' => $request->roads_id, 'time_go' => $request->time_go]);
+        $bus->where('id', $request->id)->update(['name' => $request->name, 'license_plate' => $request->license_plate, 'garages_id' => $request->garages, 'roads_id' => $request->roads_id, 'time_go' => $request->time_go, 'time_arrival' => $request->time_arrival]);
         return redirect('/admin/bus')->with('status', 'Bus edited!');
     }
 

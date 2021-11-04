@@ -6,11 +6,17 @@ $(document).ready(function () {
         let name = button.data('name');
         let license = button.data('license');
         let garages = button.data('garages');
+        let time_go = button.data('time_go');
+        let time_arrival = button.data('time_arrival');
+        let two_point = button.data('two_point');
         let modal = $(this);
 
         modal.find('.modal-body #id_edit').val(id);
         modal.find('.modal-body #name_edit').val(name);
-        modal.find('.modal-body #email_edit').val(license);
+        modal.find('.modal-body #license_plate_edit').val(license);
+        modal.find('.modal-body #time_go_edit').val(time_go);
+        modal.find('.modal-body #time_arrival_edit').val(time_arrival);
+        modal.find('.modal-body #time_arrival_edit').val(two_point);
 
         $("#garages_edit").val(garages);
     });
