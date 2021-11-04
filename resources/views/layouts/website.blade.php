@@ -255,13 +255,13 @@
         // pls don't forget to change to your domain :)
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
     </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/external/jquery/jquery.js"></script>
     <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function() {
             $(function() {
                 $("#datepicker").datepicker();
+                $('[data-toggle="tooltip"]').tooltip();
             });
         });
 

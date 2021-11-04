@@ -2,6 +2,7 @@
 
 @section('content')
 <!-- HEADING BREADCRUMB-->
+<link rel="stylesheet" href="css/pages/ticket.css">
 <section class="bg-pentagon py-4">
     <div class="container py-3">
         <div class="row d-flex align-items-center gy-4">
@@ -36,7 +37,7 @@
                 <p class="text-gray-600 text-sm" id="text-to"><strong>{{ $data['to'] }}</strong></p>
             </div>
         </div>
-        <form>
+        <form method="post" action="/">
             @csrf
             <input type="hidden" name="date" value="{{ $data['date'] }}">
             <div class="row gy-5 mb-5">
@@ -74,14 +75,18 @@
                     </select>
                 </div>
             </div>
+            <div class="mb-5">
+                <div class="rectangle" id="bus-seat">
+                    <button type="button" class="seat m-3" data-toggle="tooltip" data-placement="top" title=""> 23 </button><br>
+                    
+                </div>
+            </div>
         </form>
-
-
     </div>
 
 </section>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 <script src="js/pages/ticket.js"></script>
 <script>
     var road = <?php echo json_encode($data['roads']) ?>;

@@ -38,12 +38,18 @@ function setRoad() {
 
 function setStation() {
 
-    for(i of station) {
-        console.log(roadId)
-        console.log(i.roads_id)
-        if(roadId == i.roads_id) {
+    for (i of station) {
+        if (roadId == i.roads_id) {
             $("#station_from").append("<option value='" + i.id + "'>" + i.name + "</option>");
             $("#station_to").append("<option value='" + i.id + "'>" + i.name + "</option>");
+        }
+    }
+}
+
+function setSet() {
+    for (i = 1; i <= 45; i++) {
+        if (i == 20) {
+            $("#bus-seat").append("<button id='seat-in-bus-" + i + "' type='button' class='seat m-3' data-toggle='tooltip' data-placement='top' title=''>" + i + "</button><br>");        
         }
     }
 }
