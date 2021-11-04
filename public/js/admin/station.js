@@ -7,6 +7,7 @@ $(document).ready(function () {
         let address = button.data('address');
         let cost_first = button.data('cost_first');
         let cost_second = button.data('cost_second');
+        let road = button.data('road');
         let modal = $(this);
 
         modal.find('.modal-body #id_edit').val(id);
@@ -14,6 +15,7 @@ $(document).ready(function () {
         modal.find('.modal-body #address_edit').val(address);
         modal.find('.modal-body #cost_first_edit').val(cost_first);
         modal.find('.modal-body #cost_second_edit').val(cost_second);
+        modal.find('.modal-body #road_edit').val(road);
     });
 
     $('#deleteModal').on('show.bs.modal', function (event) {

@@ -16,7 +16,6 @@ $(document).ready(function () {
         modal.find('.modal-body #license_plate_edit').val(license);
         modal.find('.modal-body #time_go_edit').val(time_go);
         modal.find('.modal-body #time_arrival_edit').val(time_arrival);
-        modal.find('.modal-body #time_arrival_edit').val(two_point);
 
         $("#garages_edit").val(garages);
     });

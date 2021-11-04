@@ -62,7 +62,7 @@
                     <h4 class="text-uppercase mb-3">Option( Choose from station )</h4>
                     <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'from garage')</p>
                     <select class="form-control" name="station_from" id="station_from" required>
-                        <option value="0">blank</option>
+                        <option value="0" selected>blank</option>
                     </select>
                 </div>
                 <div class="col-lg-2 text-center">
@@ -71,13 +71,14 @@
                     <h4 class="text-uppercase mb-3">Option( Choose to station )</h4>
                     <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'to garage')</p>
                     <select class="form-control" name="station_to" id="station_to" required>
-                        <option value="0">blank</option>
+                        <option value="0" selected>blank</option>
                     </select>
                 </div>
             </div>
             <div class="row gy-5 mb-5">
                 <div class="col-lg-5 text-center">
                     <h4 class="text-uppercase mb-3">Pick time</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* Time is expected, bus can wait 15 minutes in station!')</p>
                     <select class="form-control" name="time_go" id="time_go" required>
                     </select>
                 </div>

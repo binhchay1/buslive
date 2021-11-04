@@ -42,7 +42,7 @@
                                         <td>{{ $station->cost_second }} đ</td>
                                         <td>{{ $station->road_name }}</td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-primary" id="edit_users" data-id="{{ $station->id }}" data-name="{{ $station->name }}" data-address="{{ $station->address }}" data-cost_first="{{ $station->cost_first }}" data-cost_second="{{ $station->cost_second }}" data-toggle="modal" data-target="#editModal">
+                                            <button type="button" class="btn btn-primary" id="edit_users" data-id="{{ $station->id }}" data-name="{{ $station->name }}" data-address="{{ $station->address }}" data-cost_first="{{ $station->cost_first }}" data-cost_second="{{ $station->cost_second }}" data-road="{{ $station->roads_id }}" data-toggle="modal" data-target="#editModal">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                             <button type="button" class="btn btn-primary ml-1" data-id="{{ $station->id }}" data-toggle="modal" data-target="#deleteModal">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="road" class="form-label">Road</label>
-                        <select class="form-control form-select-sm" name="road">
+                        <select class="form-control form-select-sm" name="roads_id">
                             @foreach($data['roads'] as $road)
                             <option class="form-control" value="{{ $road->id }}">{{ $road->two_point }}</option>
                             @endforeach
@@ -137,9 +137,13 @@
                         <label for="cost_second" class="form-label">Cost 2</label>
                         <input type="text" name="cost_second" class="form-control" id="cost_second_edit" onkeypress='validate(event)' required>
                     </div>
-                    <div class="form-group d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary mr-2">Save</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="mb-3">
+                        <label for="road" class="form-label">Road</label>
+                        <select class="form-control form-select-sm" name="roads_id" id="road_edit">
+                            @foreach($data['roads'] as $road)
+                            <option class="form-control" value="{{ $road->id }}">{{ $road->two_point }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <input type="hidden" name="id" id="id_edit" />
                     <div class="form-group d-flex justify-content-end">

@@ -82,11 +82,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="license_plate" class="form-label">License Plate</label>
-                        <input type="text" name="license_plate" class="form-control" id="license_plate_edit">
+                        <input type="text" name="license_plate" class="form-control" id="license_plate">
                     </div>
                     <div class="mb-3">
                         <label for="garages" class="form-label">Garages</label>
-                        <select class="form-control form-select-sm" name="garages" id="garages_edit">
+                        <select class="form-control form-select-sm" name="garages" id="garages">
                             @foreach($data['garages'] as $garage)
                             <option class="form-control" value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
                             @endforeach

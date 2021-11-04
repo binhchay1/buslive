@@ -43,6 +43,10 @@ class StationController extends Controller
             return redirect('/admin/station')->with('status', 'Cost 1 plus Cost 2 not equal Road cost');
         }
 
+        if ($request->cost_first == $query->cost_first && $request->cost_second === $query->cost_second) {
+            return redirect('/admin/station')->with('status', 'Cost 1 and Cost 2 in this Roads is exits!');
+        }
+
         $station = new Station();
 
         $station->name = $input['name'];
@@ -59,8 +63,15 @@ class StationController extends Controller
     public function editStation(Request $request)
     {
         $station = new Station();
-        $station->where('id', $request->id)->update(['garages_id_first' => $request->garages_id_first, 'garages_id_second' => $request->garages_id_second, 'cost' => $request->cost]);
+        $query = DB::table('station')->where('roads_id', $request->roads_id)->first();
 
+        if ($request->cost_first == $query->cost_first AND $request->cost_second === $query->cost_second) {
+            return redirect('/admin/station')->with('status', 'Cost 1 and Cost 2 in this Roads is exits!');
+        }
+        
+        $station->where('id', $request->id)->update(['name' => $request->name, 'address' => $request->address, 'roads_id' => $request->roads_id, 'cost_first' => $request->cost_first, 'cost_second' => $request->cost_second]);
+
+        
         return redirect('/admin/station')->with('status', 'Stations edited!');
     }
 

@@ -86,6 +86,7 @@
         </div>
         <!-- Top bar end-->
         <div class="alert mb-3 alert-success d-none" role="alert" id="alert-thank"> <strong>Thank you! </strong> Reply soon.</div>
+        <div class="alert mb-3 alert-success d-none" role="alert" id="alert-ticket"></div>
         <!-- Navbar Sticky-->
         <header class="nav-holder make-sticky">
             <div class="navbar navbar-light bg-white navbar-expand-lg py-0" id="navbar">

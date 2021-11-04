@@ -19,7 +19,7 @@ class BusController extends Controller
 
         foreach ($data['bus'] as $bus) {
             foreach ($data['roads'] as $road) {
-                if($bus->roads_id == $road->id) {
+                if ($bus->roads_id == $road->id) {
                     $garage1 = DB::table('garages')->where('id', $road->garages_id_first)->first();
                     $garage2 = DB::table('garages')->where('id', $road->garages_id_second)->first();
                     $bus->two_point = $garage1->name_garage . ' <-> ' . $garage2->name_garage;
@@ -28,7 +28,7 @@ class BusController extends Controller
         }
 
         foreach ($data['roads'] as $road) {
-            if($bus->roads_id == $road->id) {
+            if ($bus->roads_id == $road->id) {
                 $garage1 = DB::table('garages')->where('id', $road->garages_id_first)->first();
                 $garage2 = DB::table('garages')->where('id', $road->garages_id_second)->first();
                 $road->two_point = $garage1->name_garage . ' <-> ' . $garage2->name_garage;
@@ -43,6 +43,10 @@ class BusController extends Controller
         $input = $request->all();
 
         $bus = new Bus();
+
+        if ($this->hoursToMinutes($input['time_arrival']) - $this->hoursToMinutes($input['time_go']) < 0) {
+            return redirect('/admin/bus')->with('status', 'Time Arrival need to higher than Time Go!');
+        }
 
         $bus->name = $input['name'];
         $bus->license_plate = $input['license_plate'];
@@ -59,6 +63,10 @@ class BusController extends Controller
     public function editBus(Request $request)
     {
         $bus = new Bus();
+
+        if ($this->hoursToMinutes($request->time_arrival) - $this->hoursToMinutes($request->time_go) < 0) {
+            return redirect('/admin/bus')->with('status', 'Time Arrival need to higher than Time Go!');
+        }
         $bus->where('id', $request->id)->update(['name' => $request->name, 'license_plate' => $request->license_plate, 'garages_id' => $request->garages, 'roads_id' => $request->roads_id, 'time_go' => $request->time_go, 'time_arrival' => $request->time_arrival]);
         return redirect('/admin/bus')->with('status', 'Bus edited!');
     }
@@ -69,5 +77,14 @@ class BusController extends Controller
         $bus->delete();
 
         return redirect('/admin/bus')->with('status', 'Bus deleted!');
+    }
+
+    public function hoursToMinutes($hours)
+    {
+        $minutes = 0;
+        if (strpos($hours, ':') !== false) {
+            list($hours, $minutes) = explode(':', $hours);
+        }
+        return $hours * 60 + $minutes;
     }
 }
