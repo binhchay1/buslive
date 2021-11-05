@@ -7,13 +7,13 @@
     <div class="container py-3">
         <div class="row d-flex align-items-center gy-4">
             <div class="col-md-7">
-                <h1 class="h2 mb-0 text-uppercase">Ticket</h1>
+                <h1 class="h2 mb-0 text-uppercase">Vé</h1>
             </div>
             <div class="col-md-5">
                 <!-- Breadcrumb-->
                 <ol class="text-sm justify-content-start justify-content-lg-end mb-0 breadcrumb undefined">
-                    <li class="breadcrumb-item"><a class="text-uppercase" href="/">Home</a></li>
-                    <li class="breadcrumb-item text-uppercase active">Ticket </li>
+                    <li class="breadcrumb-item"><a class="text-uppercase" href="/">Trang chủ</a></li>
+                    <li class="breadcrumb-item text-uppercase active">Vé </li>
                 </ol>
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="row gy-5 mb-5">
             <div class="col-lg-5 block-icon-hover text-center">
                 <div class="icon icon-outlined icon-outlined-primary icon-thin mx-auto mb-3"><i class="fas fa-map-marker-alt"></i></div>
-                <h4 class="text-uppercase mb-3">From</h4>
+                <h4 class="text-uppercase mb-3">Xuất phát</h4>
                 <p class="text-gray-600 text-sm" id="text-from"><strong>{{ $data['from'] }}</strong></p>
             </div>
             <div class="col-lg-2 text-center">
@@ -33,7 +33,7 @@
             </div>
             <div class="col-lg-5 block-icon-hover text-center">
                 <div class="icon icon-outlined icon-outlined-primary icon-thin mx-auto mb-3"><i class="fas fa-map-marker-alt"></i></div>
-                <h4 class="text-uppercase mb-3">To</h4>
+                <h4 class="text-uppercase mb-3">Đến</h4>
                 <p class="text-gray-600 text-sm" id="text-to"><strong>{{ $data['to'] }}</strong></p>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <input type="hidden" name="date" value="{{ $data['date'] }}">
             <div class="row gy-5 mb-5">
                 <div class="col-lg-5 block-icon-hover text-center">
-                    <h4 class="text-uppercase mb-3">From Garages</h4>
+                    <h4 class="text-uppercase mb-3">Ga xuất phát</h4>
                     <select class="form-control" name="from" id="from" required>
                         @foreach($data['allGarageFrom'] as $garage)
                         <option value="{{ $garage->id }}">{{ $garage->name_garage }}</option>
@@ -52,45 +52,71 @@
                 <div class="col-lg-2 text-center">
                 </div>
                 <div class="col-lg-5 block-icon-hover text-center">
-                    <h4 class="text-uppercase mb-3">To Garages</h4>
+                    <h4 class="text-uppercase mb-3">Ga đến</h4>
                     <input class="form-control" name="to" id="to" disabled>
                 </div>
             </div>
 
             <div class="row gy-5 mb-5">
                 <div class="col-lg-5 block-icon-hover text-center">
-                    <h4 class="text-uppercase mb-3">Option( Choose from station )</h4>
-                    <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'from garage')</p>
+                    <h4 class="text-uppercase mb-3">Tùy chọn( Chọn xuất phát tại điểm dừng chân )</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* Nếu bạn để trống, mặc định sẽ xuất phát tại nhà ga)</p>
                     <select class="form-control" name="station_from" id="station_from" required>
-                        <option value="0" selected>blank</option>
+                        <option value="0" selected>trống</option>
                     </select>
                 </div>
                 <div class="col-lg-2 text-center">
                 </div>
                 <div class="col-lg-5 block-icon-hover text-center">
-                    <h4 class="text-uppercase mb-3">Option( Choose to station )</h4>
-                    <p class="mb-3" style="font-size:10px; color:grey;">(* If you choose blank, default 'place to' is 'to garage')</p>
+                    <h4 class="text-uppercase mb-3">Tùy chọn ( Chọn điểm đến là điểm dừng chân )</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* Nếu bạn để trống, mặc định sẽ đến điểm cuối cùng là nhà ga)</p>
                     <select class="form-control" name="station_to" id="station_to" required>
-                        <option value="0" selected>blank</option>
+                        <option value="0" selected>trống</option>
                     </select>
                 </div>
             </div>
             <div class="row gy-5 mb-5">
                 <div class="col-lg-5 text-center">
-                    <h4 class="text-uppercase mb-3">Pick time</h4>
-                    <p class="mb-3" style="font-size:10px; color:grey;">(* Time is expected, bus can wait 15 minutes in station!')</p>
+                    <h4 class="text-uppercase mb-3">Chọn thời gian</h4>
+                    <p class="mb-3" style="font-size:10px; color:grey;">(* Thời gian chỉ là dự kiến, hãy cố gắng đến trước 30 phút!')</p>
                     <select class="form-control" name="time_go" id="time_go" required>
                     </select>
                 </div>
                 <div class="col-lg-2 text-center">
                 </div>
-                <div class="col-lg-5 rectangle" id="bus-seat">
-                    <button type="button" class="seat m-3" data-toggle="tooltip" data-placement="top" title=""> 23 </button><br>
+                <div class="col-lg-5">
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="d-flex">
+                <div class="d-flex car">
+                    <div class="rectangle" id="bus-seat"></div>
+                    <div class="rectangle-2" id="bus-seat-back">
+                        <div class="mt-2 ml-5"><button id='seat-in-bus-41' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>41</button><span id='seat-back-41'></span></div>
+                        <div class="ml-5"><button id='seat-in-bus-42' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>42</button><span id='seat-back-42'></span></div>
+                        <div class="ml-5"><button id='seat-in-bus-43' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>43</button><span id='seat-back-43'></span></div>
+                        <div class="ml-5"><button id='seat-in-bus-44' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>44</button><span id='seat-back-44'></span></div>
+                        <div class="ml-5"><button id='seat-in-bus-45' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>45</button><span id='seat-back-45'></span></div>
+                    </div>
+                </div>
+                <div class="card" style="border: 0;height: 190px">
+                    <div class="card-body" style="padding: 0 !important">
+                        <article class="card fl-left" style="margin-left: 175px;">
+                            <section class="date" style="border-left: 2px dashes white !important;"> <time datetime="23th feb"> <span>23</span><span>feb</span> </time> </section>
+                            <section class="card-cont"> <small>dj khaled</small>
+                                <h3>live in sydney</h3>
+                                <div class="even-date"> <i class="fa fa-calendar"></i> <time> <span>wednesday 28 december 2014</span> <span>08:55pm to 12:00 am</span> </time></div>
+                                <div class="even-info"> <i class="fa fa-map-marker"></i>
+                                    <p> nexen square for people australia, sydney</p>
+                                </div> <a href="#">tickets</a>
+                            </section>
+                        </article>
+                    </div>
                 </div>
             </div>
         </form>
     </div>
-
 </section>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>

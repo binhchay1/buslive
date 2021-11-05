@@ -130,9 +130,8 @@
 <section class="py-5 bg-pentagon border-top border-gray-600">
     <div class="container py-4">
         <header class="mb-5">
-            <h2 class="lined lined-center text-uppercase mb-4">Testimonials</h2>
-            <p class="lead text-center">We have worked with many clients and we always like to hear they come out from the
-                cooperation happy and satisfied. Have a look what our clients said about us.</p>
+            <h2 class="lined lined-center text-uppercase mb-4">Ý kiến khách hàng</h2>
+            <p class="lead text-center">Chúng tôi đã làm việc với nhiều khách hàng và chúng tôi luôn muốn nghe về sự hài lòng mà chúng tôi mang lại. Hãy xem khách hàng của chúng tôi nói gì về chúng tôi..</p>
         </header>
         <!-- Testimonials slider-->
         <div class="swiper-container testimonials-slider">
@@ -140,17 +139,15 @@
                 <div class="swiper-slide h-auto mb-5">
                     <div class="p-4 bg-white h-100 d-flex flex-column justify-content-between">
                         <div class="mb-2">
-                            <p class="text-sm text-gray-600">One morning, when Gregor Samsa woke from troubled dreams, he found
-                                himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he
-                                lifted his head a little he could see his brown belly, slightly domed and divided by arches into
-                                stiff sections.</p>
+                            <p class="text-sm text-gray-600">Chất lượng dịch vụ tốt, thanh toán nhanh gọn và rất thuận tiện. Tôi đã từ bỏ đi xe tàu hỏa vì dịch vụ này
+Thật là tốt khi có những dịch vụ này</p>
                             <p class="text-sm text-gray-600"></p>
                         </div>
                         <div class="d-flex align-items-center justify-content-between"><i class="fas fa-quote-left text-primary fa-2x"></i>
                             <div class="d-flex align-items-center ms-3">
                                 <div class="me-3 text-end">
-                                    <h5 class="text-uppercase mb-0">John McIntyre</h5>
-                                    <p class="small text-muted mb-0">CEO, transTech</p>
+                                    <h5 class="text-uppercase mb-0">Tyler One</h5>
+                                    <p class="small text-muted mb-0">Tech Lead</p>
                                 </div><img class="avatar p-1 flex-shrink-0" src="img/person-1.jpg" alt="John McIntyre" width="60">
                             </div>
                         </div>
@@ -350,7 +347,7 @@
 <section class="py-5 bg-gray-200">
     <div class="container py-4">
         <header class="mb-5">
-            <h2 class="text-uppercase lined lined-center mb-4">Our clients </h2>
+            <h2 class="text-uppercase lined lined-center mb-4">Tài trợ </h2>
         </header>
         <!-- Customer slider-->
         <div class="swiper-container customers-slider">

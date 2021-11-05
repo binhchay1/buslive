@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Buslive') }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -46,7 +46,7 @@
             <div class="container px-lg-0 text-light py-1">
                 <div class="row d-flex align-items-center">
                     <div class="col-md-6 d-md-block d-none">
-                        <p class="mb-0 text-xs">Contact us on 024.3976.3585 or admin@buslive.com.</p>
+                        <p class="mb-0 text-xs">Liên hệ với chúng tôi với 024.3976.3585 or admin@buslive.com.</p>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-md-end justify-content-between">
@@ -62,19 +62,19 @@
                                         <div class="info dropdown">
                                             <a class="d-block dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->name }}</a>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                <a class="dropdown-item" href="/profile">Profile</a>
+                                                <a class="dropdown-item" href="/profile">Hồ sơ</a>
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
-                                                    <button class="dropdown-item">{{ __('Sign out') }}</button>
+                                                    <button class="dropdown-item">{{ __('Đăng xuất') }}</button>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
                                 @else
-                                <li class="list-inline-item"><a href="{{ route('login') }}" class="text-xs text-uppercase fw-bold text-reset"><i class="fas fa-door-open me-2"></i><span class="d-none d-md-inline-block">Sign In</span></a></li>
+                                <li class="list-inline-item"><a href="{{ route('login') }}" class="text-xs text-uppercase fw-bold text-reset"><i class="fas fa-door-open me-2"></i><span class="d-none d-md-inline-block">Đăng nhập</span></a></li>
                                 @if (Route::has('register'))
-                                <li class="list-inline-item"><a href="{{ route('register') }}" class="text-xs text-uppercase fw-bold text-reset"><i class="fas fa-user me-2"></i><span class="d-none d-md-inline-block">Sign Up</span></a></li>
+                                <li class="list-inline-item"><a href="{{ route('register') }}" class="text-xs text-uppercase fw-bold text-reset"><i class="fas fa-user me-2"></i><span class="d-none d-md-inline-block">Đăng ký</span></a></li>
                                 @endif
                                 @endauth
                             </ul>
@@ -85,94 +85,49 @@
             </div>
         </div>
         <!-- Top bar end-->
-        <div class="alert mb-3 alert-success d-none" role="alert" id="alert-thank"> <strong>Thank you! </strong> Reply soon.</div>
+        <div class="alert mb-3 alert-success d-none" role="alert" id="alert-thank"> <strong>Cám ơn! </strong> Chúng tôi sẽ trả lời trong thời gian sớm nhất.</div>
         <div class="alert mb-3 alert-success d-none" role="alert" id="alert-ticket"></div>
         <!-- Navbar Sticky-->
         <header class="nav-holder make-sticky">
             <div class="navbar navbar-light bg-white navbar-expand-lg py-0" id="navbar">
                 <div class="container py-3 py-lg-0 px-lg-0">
-                    <!-- Navbar brand--><a class="navbar-brand" href="/"><img class="d-none d-md-inline-block" src="img/logo.png"><img class="d-inline-block d-md-none" src="img/logo-small.png" alt="Universal logo"><span class="sr-only">Universal - go to homepage</span></a>
+                    <!-- Navbar brand--><a class="navbar-brand" href="/"><img class="d-none d-md-inline-block" src="img/logo.png"><img class="d-inline-block d-md-none" src="img/logo-small.png" alt="Universal logo"><span class="sr-only">Buslive - về trang chủ</span></a>
                     <!-- Navbar toggler-->
-                    <button class="navbar-toggler text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="sr-only">Toggle navigation</span><i class="fas fa-align-justify"></i></button>
+                    <button class="navbar-toggler text-primary border-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navigationCollapse" aria-controls="navigationCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="sr-only">Thu gọn</span><i class="fas fa-align-justify"></i></button>
                     <!-- Collapsed Navigation    -->
                     <div class="collapse navbar-collapse" id="navigationCollapse">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <!-- homepage dropdown-->
-                            <li class="nav-item dropdown"><a class="nav-link" href="/">Home</a></li>
+                            <li class="nav-item dropdown"><a class="nav-link" href="/">Trang chủ</a></li>
                             <!-- megamenu [features]-->
-                            <li class="nav-item dropdown menu-small"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Ticket</a>
+                            <li class="nav-item dropdown menu-small"><a class="nav-link dropdown-toggle" id="featuresMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Vé</a>
                                 <ul class="dropdown-menu megamenu p-4" aria-labelledby="featuresMegamenu" id="book-ticket">
                                     <li>
                                         <div class="row">
                                             <div class="card">
                                                 <div class="mb-3">
-                                                    <label for="ticket-from" class="form-label">From</label>
+                                                    <label for="ticket-from" class="form-label">Xuất phát</label>
                                                     <select class="form-control" name="ticket-from" id="ticket-from" required>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="ticket-to" class="form-label">To</label>
+                                                    <label for="ticket-to" class="form-label">Đến</label>
                                                     <select class="form-control" name="ticket-to" id="ticket-to" required>
                                                     </select>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="ticket-to" class="form-label">Date</label>
+                                                    <label for="ticket-to" class="form-label">Ngày đi</label>
                                                     <input type="text" id="datepicker" class="end_date" required>
                                                 </div>
                                                 <div class="form-group text-danger mb-2" id="error-book"></div>
-                                                <button class="btn btn-primary mb-2" onclick="bookTicket()">Book</button>
+                                                <button class="btn btn-primary mb-2" onclick="bookTicket()">Đặt vé</button>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
-                            </li>
-                            <!-- megamenu [portfolio]-->
-                            <li class="nav-item dropdown menu-large"><a class="nav-link dropdown-toggle" id="portfolioMegamenu" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-                                <ul class="dropdown-menu megamenu p-4" aria-labelledby="portfolioMegamenu">
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-lg-6"><img class="img-fluid d-none d-lg-block" src="img/template-homepage.png" alt=""></div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Portfolio</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-2.html">2
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-2.html">2 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-3.html">3
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-3.html">3 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-4.html">4
-                                                            columns</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-no-space-4.html">4 columns with negative space</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-detail.html">Portfolio - detail</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="portfolio-detail-2.html">Portfolio - detail 2</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6">
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">About</h5>
-                                                <ul class="list-unstyled mb-3">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="about.html">About
-                                                            us</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="team.html">Our team</a>
-                                                    </li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="team-member.html">Team
-                                                            member</a></li>
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="services.html">Services</a></li>
-                                                </ul>
-                                                <h5 class="text-dark text-uppercase pb-2 border-bottom">Marketing</h5>
-                                                <ul class="list-unstyled">
-                                                    <li class="nav-item"><a class="nav-link-sub py-2 text-uppercase" href="packages.html">Packages</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <!-- megamenu [all pages]-->
-                            <li class="nav-item"><a class="nav-link" id="allPagesMegamenu" href="/testapi">All pages</a>
                             </li>
                             <!-- dropdown menu [contact]-->
-                            <li class="nav-item"><a class="nav-link" id="contactMegamenu" href="/contact">Contact</a>
+                            <li class="nav-item"><a class="nav-link" id="contactMegamenu" href="/contact">Liên hệ</a>
                             </li>
                         </ul>
                     </div>
@@ -190,10 +145,10 @@
                 <div class="container py-4">
                     <div class="row gy-2">
                         <div class="col-lg-6">
-                            <h4 class="mb-3 text-uppercase">About Us</h4>
-                            <p class="text-sm mb-3 text-gray-500">We want to serve all of your trips perfectly. That's exactly what we built the BusLive system</p>
+                            <h4 class="mb-3 text-uppercase">Về chúng tôi</h4>
+                            <p class="text-sm mb-3 text-gray-500">Chúng tôi muốn phát triển 1 hệ thống bán vé chuyên nghiệp nhất Việt Nam. Đó là </p>
                             <hr>
-                            <h4 class="h6 text-uppercase mt-2">Join Us!</h4>
+                            <h4 class="h6 text-uppercase mt-2">Đăng ký để nhận thêm thông tin!</h4>
                             <form>
                                 <div class="input-group border mb-3">
                                     <input class="form-control bg-none border-0 shadow-0 text-white" type="email" placeholder="Email address" aria-label="Email address" aria-describedby="button-submit">
@@ -202,7 +157,7 @@
                             </form>
                         </div>
                         <div class="col-lg-6">
-                            <h4 class="mb-3 text-uppercase">Contact</h4>
+                            <h4 class="mb-3 text-uppercase">Liên hệ</h4>
                             <p class="text-uppercase text-sm text-gray-500">5 Lê Thánh Tông, Phan Chu Trinh, Hoàn Kiếm, Hà Nội</p>
                             <p class="text-uppercase text-sm text-gray-500">Phone: <strong>024.3976.3585</strong></p>
                             <p class="text-uppercase text-sm text-gray-500">Fax: <strong>024.3976.1996</strong></p>
@@ -218,7 +173,7 @@
                             <p class="mb-0 text-sm text-gray-500">&copy; 2021. <strong>BusLive</strong> / All rights reserved. <b>Version</b> 1.0.0</p>
                         </div>
                         <div class="col-md-6 text text-md-end">
-                            <p class="mb-0 text-sm text-gray-500">Template designed by <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> &amp; <a href="https://hikershq.com/" target="_blank">HHQ</a> </p>
+                            <p class="mb-0 text-sm text-gray-500">Thư viện được thiết kế bởi <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> &amp; <a href="https://hikershq.com/" target="_blank">HHQ</a> </p>
 
                         </div>
                     </div>
@@ -284,9 +239,20 @@
             let to = document.getElementById("ticket-to");
             let textTo = to.options[to.selectedIndex].text;
             let date = document.getElementById("datepicker");
+            let today = new Date();
+            let bookDate = new Date(date);
+
+            if (today < bookDate) {
+                error = "Không thể chọn những ngày trước đó!";
+                document.getElementById("error-book").innerHTML = error;
+                $("#book-ticket").click(function(e) {
+                    e.stopPropagation();
+                })
+                return;
+            }
 
             if (textFrom == textTo) {
-                error = 'From and To is same place!';
+                error = 'Điểm đến và điểm đi giống nhau!';
                 document.getElementById("error-book").innerHTML = error;
                 $("#book-ticket").click(function(e) {
                     e.stopPropagation();

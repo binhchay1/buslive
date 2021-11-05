@@ -11,6 +11,8 @@ $(document).ready(function () {
     setRoad();
     setStation();
     getTimeOfBus('nonStation', 0, 0);
+    setSet();
+    addStyle();
 
     $('#from').on('change', function () {
         setRoad();
@@ -117,7 +119,7 @@ function getTimeOfBus(type, stationIdFrom, stationIdTo) {
                                 cost_to = res['station_to'].cost_second;
                             }
                         }
-                       
+
                         if (typeof cost_from !== 'undefined' && typeof cost_to === 'undefined') {
                             let totalTime = convertH2M(i.time_arrival) - convertH2M(i.time_go);
                             let timePerCost = totalTime / i.cost;
@@ -149,9 +151,17 @@ function getTimeOfBus(type, stationIdFrom, stationIdTo) {
 }
 
 function setSet() {
-    for (i = 1; i <= 45; i++) {
-        if (i == 20) {
-            $("#bus-seat").append("<button id='seat-in-bus-" + i + "' type='button' class='seat m-3' data-toggle='tooltip' data-placement='top' title=''>" + i + "</button><br>");
+    for (i = 1; i <= 40; i++) {
+        if (i == 10 || i == 20 || i == 30) {
+            $("#bus-seat").append("<button id='seat-in-bus-" 
+            + i + "' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>" 
+            + i + "</button><span id='seat-back-" 
+            + i + "'></span><br>");
+        } else {
+            $("#bus-seat").append("<button id='seat-in-bus-" 
+            + i + "' type='button' class='seat' data-toggle='tooltip' data-placement='top' title=''>" 
+            + i + "</button><span id='seat-back-" 
+            + i + "'></span>");
         }
     }
 }
@@ -176,4 +186,42 @@ function convertM2H(timeInHour) {
 
 function float2int(value) {
     return value | 0;
+}
+
+function addStyle() {
+    for (let i = 1; i <= 40; i++) {
+        if (i <= 10) {
+            let idSeat = 'seat-in-bus-' + i;
+            let element = document.getElementById(idSeat);
+            element.classList.add("mb-1");
+            element.classList.add("mt-2");
+            element.classList.add("ml-4");
+            continue;
+        }
+
+        if (10 < i && i <= 20) {
+            let idSeat = 'seat-in-bus-' + i;
+            let element = document.getElementById(idSeat);
+            element.classList.add("mb-4");
+            element.classList.add("ml-4");
+            continue;
+        }
+
+        if (20 < i && i <= 30) {
+            let idSeat = 'seat-in-bus-' + i;
+            let element = document.getElementById(idSeat);
+            element.classList.add("mb-1");
+            element.classList.add("ml-4");
+            continue;
+        }
+
+        if (30 < i && i <= 40) {
+            let idSeat = 'seat-in-bus-' + i;
+            let element = document.getElementById(idSeat);
+            element.classList.add("mb-2");
+            element.classList.add("ml-4");
+            continue;
+        }
+    }
+
 }
