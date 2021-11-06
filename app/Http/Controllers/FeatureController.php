@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\DB;
 
 class FeatureController extends Controller
@@ -48,16 +49,19 @@ class FeatureController extends Controller
 
     public function bookTicket(Request $request)
     {
+        if($request->date === null) {
+            $request->date = date("Y-m-d");
+        }
 
         $data['from'] = $request->from;
         $data['to'] = $request->to;
         $data['date'] = $request->date;
-
         $data['allGarageFrom'] = DB::table('garages')->where('city', $data['from'])->get();
         $data['allGarageTo'] = DB::table('garages')->where('city', $data['to'])->get();
         $data['station'] = DB::table('station')->get();
-
+        $data['ticket'] = DB::table('ticket')->get();
         $data['roads'] = DB::table('roads')->get();
+        $data['disable_seat'] = DB::table('ticket')->where('date', $request->date)->get();
 
         return view('pages.ticket', ['data' => $data]);
     }
@@ -88,5 +92,31 @@ class FeatureController extends Controller
         }
 
         return $data;
+    }
+
+    public function takeTicket(Request $request) {
+        $ticket = new Ticket();
+
+        $ticket->date = $request->date;
+        $ticket->from = $request->from;
+        $ticket->to = $request->to_number;
+        $ticket->station_from = $request->station_from;
+        $ticket->station_to = $request->station_to;
+        $ticket->time_go = $request->time_go;
+        $ticket->code = $request->code;
+        $ticket->seat = $request->seat;
+        $ticket->bus_id = $request->bus_id;
+        $ticket->cost = $request->cost;
+        $ticket->users_id = $request->users_id;
+
+        $ticket->save();
+
+        $data = $ticket;
+        $data->bus_name = $request->name_of_bus;
+        $data->place_from = $request->place_from;
+        $data->place_to = $request->place_to;
+        $data->license_plate = $request->license_plate_of_bus;
+
+        return view('pages.buy-successful', ['data' => $data]);
     }
 }

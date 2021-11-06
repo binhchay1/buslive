@@ -9,3 +9,9 @@
     top: 150px;
     right: 0;
 }
+
+#alert-success {
+    position: fixed;
+    top: 150px;
+    right: 0;
+}

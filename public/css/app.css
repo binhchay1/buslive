@@ -1256,6 +1256,9 @@ select {
 .ml-5 {
 	margin-left: 1.25rem;
 }
+.mr-5 {
+	margin-right: 1.25rem;
+}
 .block {
 	display: block;
 }
@@ -1483,6 +1486,9 @@ select {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.break-all {
+	word-break: break-all;
+}
 .rounded-md {
 	border-radius: 0.375rem;
 }
@@ -1650,6 +1656,9 @@ select {
 }
 .p-1 {
 	padding: 0.25rem;
+}
+.p-0 {
+	padding: 0px;
 }
 .px-4 {
 	padding-left: 1rem;

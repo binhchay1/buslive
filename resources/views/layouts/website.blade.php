@@ -87,6 +87,9 @@
         <!-- Top bar end-->
         <div class="alert mb-3 alert-success d-none" role="alert" id="alert-thank"> <strong>Cám ơn! </strong> Chúng tôi sẽ trả lời trong thời gian sớm nhất.</div>
         <div class="alert mb-3 alert-success d-none" role="alert" id="alert-ticket"></div>
+        @if(session('success'))
+        <div class="alert mb-3 alert-success" role="alert" id="alert-success">Đặt vé thành công</div>
+        @endif
         <!-- Navbar Sticky-->
         <header class="nav-holder make-sticky">
             <div class="navbar navbar-light bg-white navbar-expand-lg py-0" id="navbar">
@@ -117,7 +120,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="ticket-to" class="form-label">Ngày đi</label>
-                                                    <input type="text" id="datepicker" class="end_date" required>
+                                                    <input type="date" id="txtDate" class="end_date" required />
                                                 </div>
                                                 <div class="form-group text-danger mb-2" id="error-book"></div>
                                                 <button class="btn btn-primary mb-2" onclick="bookTicket()">Đặt vé</button>
@@ -159,7 +162,7 @@
                         <div class="col-lg-6">
                             <h4 class="mb-3 text-uppercase">Liên hệ</h4>
                             <p class="text-uppercase text-sm text-gray-500">5 Lê Thánh Tông, Phan Chu Trinh, Hoàn Kiếm, Hà Nội</p>
-                            <p class="text-uppercase text-sm text-gray-500">Phone: <strong>024.3976.3585</strong></p>
+                            <p class="text-uppercase text-sm text-gray-500">Số điện thoại: <strong>024.3976.3585</strong></p>
                             <p class="text-uppercase text-sm text-gray-500">Fax: <strong>024.3976.1996</strong></p>
                         </div>
                     </div>
@@ -170,7 +173,7 @@
                 <div class="container">
                     <div class="row align-items-cenrer gy-3 text-center">
                         <div class="col-md-6 text-md-start">
-                            <p class="mb-0 text-sm text-gray-500">&copy; 2021. <strong>BusLive</strong> / All rights reserved. <b>Version</b> 1.0.0</p>
+                            <p class="mb-0 text-sm text-gray-500">&copy; 2021. <strong>BusLive</strong> / Đã đăng ký Bản quyền. <b>Phiên bản</b> 1.0.0</p>
                         </div>
                         <div class="col-md-6 text text-md-end">
                             <p class="mb-0 text-sm text-gray-500">Thư viện được thiết kế bởi <a href="https://bootstrapious.com" target="_blank">Bootstrapious</a> &amp; <a href="https://hikershq.com/" target="_blank">HHQ</a> </p>
@@ -211,13 +214,30 @@
         // pls don't forget to change to your domain :)
         injectSvgSprite('https://bootstraptemple.com/files/icons/orion-svg-sprite.svg');
     </script>
-    <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/external/jquery/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="plugins/jquery-ui/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
     <script>
         $(document).ready(function() {
             $(function() {
-                $("#datepicker").datepicker();
+                let dtToday = new Date();
+
+                let month = dtToday.getMonth() + 1;
+                let day = dtToday.getDate();
+                let year = dtToday.getFullYear();
+                if (month < 10)
+                    month = '0' + month.toString();
+                if (day < 10)
+                    day = '0' + day.toString();
+
+                let maxDate = year + '-' + month + '-' + day;;
+
+                $('#txtDate').attr('min', maxDate);
                 $('[data-toggle="tooltip"]').tooltip();
+
+                $("#alert-success").fadeTo(2000, 500).slideUp(500, function() {
+                    $("#alert-success").slideUp(500);
+                    $("#alert-success").removeClass("d-block").addClass("d-none");
+                });
             });
         });
 
@@ -238,18 +258,9 @@
             let textFrom = from.options[from.selectedIndex].text;
             let to = document.getElementById("ticket-to");
             let textTo = to.options[to.selectedIndex].text;
-            let date = document.getElementById("datepicker");
+            let date = document.getElementById("txtDate");
             let today = new Date();
             let bookDate = new Date(date);
-
-            if (today < bookDate) {
-                error = "Không thể chọn những ngày trước đó!";
-                document.getElementById("error-book").innerHTML = error;
-                $("#book-ticket").click(function(e) {
-                    e.stopPropagation();
-                })
-                return;
-            }
 
             if (textFrom == textTo) {
                 error = 'Điểm đến và điểm đi giống nhau!';
