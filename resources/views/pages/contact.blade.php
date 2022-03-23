@@ -32,7 +32,7 @@
             </div>
             <div class="col-lg-4 block-icon-hover text-center">
                 <div class="icon icon-outlined icon-outlined-primary icon-thin mx-auto mb-3"><i class="fas fa-map-marker-alt"></i></div>
-                <h4 class="text-uppercase mb-3">Trung tâm hỗ trợr</h4>
+                <h4 class="text-uppercase mb-3">Trung tâm hỗ trợ</h4>
                 <p class="text-gray-600 text-sm">Số điện thoại: <strong>024.3976.3585</strong></p>
                 <p class="text-gray-600 text-sm">Fax: <strong>024.3976.1996</strong></p>
             </div>
@@ -41,7 +41,7 @@
                 <h4 class="text-uppercase mb-3">Hỗ trợ kĩ thuật</h4>
                 <p class="text-gray-600 text-sm">Vui lòng viết email cho chúng tôi hoặc sử dụng hệ thống bán vé điện tử của chúng tôi.</p>
                 <ul class="list-unstyled text-sm mb-0">
-                    <li><strong><a href="mailto:">admin@buslive.com</a></strong></li>
+                    <li><strong><a href="mailto:">admin@busticket.com</a></strong></li>
                 </ul>
             </div>
         </div>

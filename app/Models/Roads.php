@@ -12,4 +12,8 @@ class Roads extends Model
     protected $table = 'roads';
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'status'
+    ];
 }

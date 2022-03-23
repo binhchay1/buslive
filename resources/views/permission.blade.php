@@ -548,9 +548,17 @@
                 </div>
 
                 <div class="ml-4 text-lg text-gray-500 uppercase tracking-wider">
-                    Permission Denied
+                    Không được cấp quyền
                 </div>
             </div>
+
+            <form method="POST" action="{{ route('logout') }}" class="mt-3" style="margin-left: 120px">
+                @csrf
+
+                <button type="submit" class="text-sm hover:text-gray-900 btn btn-primary">
+                    {{ __('Đăng xuất') }}
+                </button>
+            </form>
         </div>
     </div>
 </body>

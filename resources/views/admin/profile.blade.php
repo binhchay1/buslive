@@ -18,18 +18,18 @@
 
                         <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
                         @if(Auth::user()->role == 1)
-                        <p class="text-muted text-center">Admin</p>
+                        <p class="text-muted text-center">Quản lý</p>
                         @elseif(Auth::user()->role == 2)
-                        <p class="text-muted text-center">Garage Manager</p>
+                        <p class="text-muted text-center">Quản lý ga</p>
                         @else
-                        <p class="text-muted text-center">Garage Employee</p>
+                        <p class="text-muted text-center">Nhân viên ga</p>
                         @endif
 
                         <div class="d-flex justify-content-center mt-3">
                             <form id="form-avatar" method="post" action="/admin/avatar" enctype="multipart/form-data">
                                 @csrf
                                 <input type="file" name="avatar" id="avatar" class="d-none" onchange="upload()" />
-                                <a class="btn btn-primary" onclick="input();"><b>Upload Avatar</b></a>
+                                <a class="btn btn-primary" onclick="input();"><b>Thay đổi ảnh</b></a>
                             </form>
                         </div>
 
@@ -43,38 +43,30 @@
                 <!-- About Me Box -->
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">About Me</h3>
+                        <h3 class="card-title">Về tôi</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
+                        <strong><i class="fas fa-envelope mr-1"></i> Địa chỉ email</strong>
                         <p class="text-muted">
                             {{ Auth::user()->email }}
                         </p>
                         <hr>
-                        <strong><i class="fas fa-user mr-1"></i> Manager</strong>
+                        <strong><i class="fas fa-phone mr-1"></i> Số điện thoại</strong>
 
                         <p class="text-muted">
-                            @if($data['subuser'] != null)
-                            {{ $data['subuser']->name }}
-                            @else
-                            Not
-                            @endif
+                            {{ Auth::user()->phone }}
                         </p>
 
                         <hr>
-                        <strong><i class="fas fa-warehouse mr-1"></i> Garage</strong>
+                        <strong><i class="fas fa-map-marked-alt mr-1"></i> Địa chỉ</strong>
 
                         <p class="text-muted">
-                            @if($data['subuser'] != null)
-                            {{ $data['garages']->name_garage }}
-                            @else
-                            Not
-                            @endif
+                            {{ Auth::user()->address }}
                         </p>
 
                         <hr>
-                        <strong><i class="far fa-file-alt mr-1"></i> Create-at</strong>
+                        <strong><i class="far fa-file-alt mr-1"></i> Ngày tạo</strong>
 
                         <p class="text-muted">{{ Auth::user()->created_at }}</p>
                     </div>
@@ -89,7 +81,7 @@
                     <div class="grid grid-cols-6 gap-6">
                         <div class="col-span-6 sm:col-span-4">
                             <label class="block font-medium text-sm text-gray-700" for="current_password">
-                                Current Password
+                                Mật khẩu hiện tại
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="current_password" type="password" name="current_password" autocomplete="current-password">
                             @error('current_password')
@@ -101,7 +93,7 @@
 
                         <div class="col-span-6 sm:col-span-4">
                             <label class="block font-medium text-sm text-gray-700" for="password">
-                                New Password
+                                Mật khẩu mới
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="password" type="password" name="password" autocomplete="new-password">
                             @error('password')
@@ -113,7 +105,7 @@
 
                         <div class="col-span-6 sm:col-span-4">
                             <label class="block font-medium text-sm text-gray-700" for="confirm_password">
-                                Confirm Password
+                                Xác nhận mật khẩu
                             </label>
                             <input class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full" id="confirm_password" type="password" name="confirm_password" autocomplete="new-password">
                             @error('confirm_password')
@@ -127,7 +119,7 @@
 
                 <div class="flex items-center justify-end px-4 py-3 bg-gray-50 text-right sm:px-6 shadow sm:rounded-bl-md sm:rounded-br-md">
                     <button type="submit" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">
-                        Save
+                        Lưu
                     </button>
                 </div>
             </form>

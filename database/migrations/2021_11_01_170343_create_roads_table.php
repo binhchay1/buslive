@@ -15,8 +15,8 @@ class CreateRoadsTable extends Migration
     {
         Schema::create('roads', function (Blueprint $table) {
             $table->id();
-            $table->string('garages_id_first')->nullable();
-            $table->string('garages_id_second')->nullable();
+            $table->integer('garages_id_first')->nullable();
+            $table->integer('garages_id_second')->nullable();
             $table->integer('cost')->nullable();
             $table->timestamps();
         });

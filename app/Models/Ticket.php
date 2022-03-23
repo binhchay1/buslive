@@ -12,4 +12,12 @@ class Ticket extends Model
     protected $table = 'ticket';
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'name_customer',
+        'phone_customer',
+        'pay_status',
+        'note',
+        'users_id'
+    ];
 }

@@ -1,1 +1,18 @@
 /* your styles go here */
+
+.centered {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.text_custom {
+    font-family: Helvetica;
+    font-weight: 700;
+    text-align: left;
+    color: rgb(242, 134, 54);
+    font-style: normal;
+    font-size: 19px;
+}

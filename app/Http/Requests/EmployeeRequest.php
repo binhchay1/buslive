@@ -24,8 +24,13 @@ class EmployeeRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:100',
-            'email' => 'required|unique:users|max:255',
+            'name' => ['required', 'min:5', 'max:100', 'regex:/([0-9a-zA-Z\sÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ])+$/'],
+            'email' => 'required|unique:users|max:255|string|email',
+            'phone' => ['required', 'min:9', 'max:11', 'regex:/(03|05|07|08|09|01)+([0-9])/'],
+            'password' => 'required|min:8|max:32',
+            'year' => 'required',
+            'month' => 'required',
+            'day' => 'required'
         ];
     }
 }

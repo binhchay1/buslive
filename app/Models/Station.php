@@ -12,4 +12,8 @@ class Station extends Model
     protected $table = 'station';
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'status'
+    ];
 }

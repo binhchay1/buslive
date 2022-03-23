@@ -14,7 +14,7 @@ class AddCostColumnToTicketTable extends Migration
     public function up()
     {
         Schema::table('ticket', function (Blueprint $table) {
-            $table->string('cost')->nullable();
+            $table->integer('cost')->nullable();
         });
     }
 

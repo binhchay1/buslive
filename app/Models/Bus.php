@@ -12,4 +12,8 @@ class Bus extends Model
     protected $table = 'bus';
 
     public $timestamps = true;
+
+    protected $fillable = [
+        'status'
+    ];
 }

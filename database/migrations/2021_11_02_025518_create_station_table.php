@@ -17,9 +17,9 @@ class CreateStationTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
-            $table->string('roads_id')->nullable();
-            $table->string('cost_first')->nullable();
-            $table->string('cost_second')->nullable();
+            $table->integer('roads_id')->nullable();
+            $table->integer('cost_first')->nullable();
+            $table->integer('cost_second')->nullable();
             $table->timestamps();
         });
     }

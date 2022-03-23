@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard | BusLive</title>
+  <title>{{ config('app.name', 'Bus Ticket') }}</title>
 
   <!-- Core Css -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
   <link rel="stylesheet" href="{{ URL::to('plugins/fontawesome-free/css/all.min.css') }}" />
   <link rel="stylesheet" href="{{ URL::to('css/admin/adminlte.min.css') }}" />
-  <link rel="icon" href="{{ URL::to('img/icon.png') }}">
+  <link rel="icon" href="{{ URL::to('img/logo_icon.ico') }}">
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <!-- /Core Css -->
 
   <!-- Core JS -->
+  <script src="{{ mix('js/app.js') }}" defer></script>
   <script src="{{ URL::to('plugins/jquery/jquery.min.js') }}"></script>
   <script src="{{ URL::to('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ URL::to('plugins/chart.js/Chart.min.js') }}"></script>
   <script src="{{ URL::to('js/admin/adminlte.min.js') }}"></script>
-  <script src="{{ URL::to('plugins/angular/js/angularjs.min.js') }}"></script>
   <!-- /Core JS -->
 
   <!-- Page JS -->
   <script src="{{ URL::to('/js/admin/main.js') }}"></script>
-  <script src="{{ mix('js/app.js') }}" defer></script>
+
   <!-- /Page JS -->
 
 </head>
@@ -57,24 +57,22 @@
               @endif
             </div>
             <div class="info">
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ Auth::user()->name }}
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/admin/profile">Profile</a>
+            <a class="dropdown-item" href="/admin/profile">Hồ sơ</a>
             <div class="dropdown-divider"></div>
             <form method="POST" action="{{ route('logout') }}">
               @csrf
-              <button class="dropdown-item">{{ __('Sign out') }}</button>
+              <button class="dropdown-item">{{ __('Đăng xuất') }}</button>
             </form>
           </div>
         </li>
-  </div>
-  </div>
-  </li>
-  </ul>
-  </nav>
+      </ul>
+    </nav>
   </div>
   @if (session('status'))
   <div class="alert alert-success clearfix" role="alert" id="alert-message">
@@ -86,14 +84,12 @@
   {!! implode('', $errors->all('<div class="alert alert-success clearfix" role="alert" id="alert-message">:message</div>')) !!}
   @endif
 
-  <!-- /.navbar -->
-
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="/admin/dashboard" class="brand-link">
-      <img src="{{ URL::to('img/icon.png') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">BusLive</span>
+      <img src="{{ URL::to('img/logo_icon.ico') }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Bus Ticket</span>
     </a>
 
     <!-- Sidebar -->
@@ -101,7 +97,7 @@
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search" />
           <div class="input-group-append">
             <button class="btn btn-sidebar">
               <i class="fas fa-search fa-fw"></i>
@@ -113,8 +109,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+          @if(Auth::user()->role == 2)
           <li class="nav-item menu-open">
             <a href="/admin/dashboard" class="nav-link" id="dashboard">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -123,56 +118,86 @@
               </p>
             </a>
           </li>
+          @endif
 
-          @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
+          @if(Auth::user()->role == 2)
+          <li class="nav-item menu-open">
             <a href="/admin/employee" class="nav-link" id="employee">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Employee
+                Quản lý nhân viên
               </p>
             </a>
-            </li>
-            @endif
+          </li>
+          @endif
 
-            @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
-              <a href="/admin/garages" class="nav-link" id="garages">
-                <i class="nav-icon fas fa-warehouse"></i>
-                <p>
-                  Garages
-                </p>
-              </a>
-              </li>
-              @endif
+          @if(Auth::user()->role == 1)
+          <li class="nav-item menu-open">
+            <a href="/admin/garages" class="nav-link" id="garages">
+              <i class="nav-icon fas fa-warehouse"></i>
+              <p>
+                Quản lý nhà xe
+              </p>
+            </a>
+          </li>
+          @endif
 
-              @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
-                <a href="/admin/bus" class="nav-link" id="bus">
-                  <i class="nav-icon fas fa-car-side"></i>
-                  <p>
-                    Bus
-                  </p>
-                </a>
-                </li>
-                @endif
+          @if(Auth::user()->role == 2)
+          <li class="nav-item menu-open">
+            <a href="/admin/bus" class="nav-link" id="bus">
+              <i class="nav-icon fas fa-car-side"></i>
+              <p>
+                Quản lý xe
+              </p>
+            </a>
+          </li>
+          @endif
+          
+          @if(Auth::user()->role == 2)
+          <li class="nav-item menu-open">
+            <a href="/admin/station" class="nav-link" id="station">
+              <i class="nav-icon fas fa-parking"></i>
+              <p>
+                Quản lý điểm bến
+              </p>
+            </a>
+          </li>
+          @endif
+          
+          @if(Auth::user()->role == 2)
+          <li class="nav-item menu-open">
+            <a href="/admin/roads" class="nav-link" id="roads">
+              <i class="nav-icon fas fa-road"></i>
+              <p>
+                Quản lý tuyến đường
+              </p>
+            </a>
+          </li>
+          @endif
 
-                @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
-                  <a href="/admin/roads" class="nav-link" id="roads">
-                    <i class="nav-icon fas fa-road"></i>
-                    <p>
-                      Roads
-                    </p>
-                  </a>
-                  </li>
-                  @endif
+          
 
-                  @if(Auth::user()->role <= 2) <li class="nav-item menu-open">
-                    <a href="/admin/station" class="nav-link" id="station">
-                      <i class="nav-icon fas fa-parking"></i>
-                      <p>
-                        Station
-                      </p>
-                    </a>
-                    </li>
-                    @endif
+          @if(Auth::user()->role >= 2)
+          <li class="nav-item menu-open">
+            <a href="/admin/trips" class="nav-link" id="trips">
+              <i class="nav-icon fas fa-calendar-alt"></i>
+              <p>
+                Quản lý chuyến đi
+              </p>
+            </a>
+          </li>
+          @endif
+
+          @if(Auth::user()->role == 1)
+          <li class="nav-item menu-open">
+            <a href="/admin/partner" class="nav-link" id="partner">
+              <i class="nav-icon fas fa-handshake"></i>
+              <p>
+                 Yêu cầu làm đối tác
+              </p>
+            </a>
+          </li>
+          @endif
 
         </ul>
       </nav>
@@ -192,8 +217,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-              <li class="breadcrumb-item active" id="nameMenu"></li>
+              <li class="breadcrumb-item"><a href="/admin/dashboard" hidden>Trang chủ</a></li>
+              <li class="breadcrumb-item active" id="nameMenu" hidden></li>
             </ol>
           </div>
         </div>
@@ -209,8 +234,8 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2021 <a href="/admin/dashboard/">BusLive</a>.</strong>
-    All rights reserved.
+    <strong>Bản quyền &copy; 2021 <a href="/admin/dashboard/">Bus Ticket</a>.</strong>
+    Đã đăng ký bản quyền
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
     </div>

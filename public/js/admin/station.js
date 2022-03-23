@@ -5,17 +5,13 @@ $(document).ready(function () {
         let id = button.data('id');
         let name = button.data('name');
         let address = button.data('address');
-        let cost_first = button.data('cost_first');
-        let cost_second = button.data('cost_second');
-        let road = button.data('road');
+        let city = button.data('city');
         let modal = $(this);
 
         modal.find('.modal-body #id_edit').val(id);
         modal.find('.modal-body #name_edit').val(name);
         modal.find('.modal-body #address_edit').val(address);
-        modal.find('.modal-body #cost_first_edit').val(cost_first);
-        modal.find('.modal-body #cost_second_edit').val(cost_second);
-        modal.find('.modal-body #road_edit').val(road);
+        modal.find('.modal-body #list-city').val(city);
     });
 
     $('#deleteModal').on('show.bs.modal', function (event) {
@@ -23,7 +19,25 @@ $(document).ready(function () {
         let id = button.data('id');
         let modal = $(this);
 
-        modal.find('.modal-body #id_delete').val(id);
+        $.ajax({
+            url: '/admin/checkdeletestation',
+            data: {
+                id: id
+            },
+            type: 'GET'
+        }).done(function (response) {
+            if (response == true) {
+                document.getElementById('text_delete_station').innerHTML = '';
+                document.getElementById('text_delete_station').innerHTML = 'Bạn chắc chắn muốn xóa ?';
+                document.getElementById('delete_station').disabled = false;
+                modal.find('.modal-body #id_delete').val(id);
+            } else {
+                document.getElementById('text_delete_station').innerHTML = '';
+                document.getElementById('text_delete_station').innerHTML = 'Điểm bến này bạn không thể xóa vì đang thuộc 1 tuyến đường đang chạy';
+                document.getElementById('delete_station').disabled = true;
+            }
+        });
+        
     });
 
 });

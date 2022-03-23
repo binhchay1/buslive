@@ -4,72 +4,87 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Garages;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\GaragesRequest;
+use App\Http\Requests\GaragesEditRequest;
+use Illuminate\Support\Facades\DB;
 
 class GaragesController extends Controller
 {
     public function viewGarages()
     {
-        $data = Garages::paginate(10);
+        $data = DB::table('garages')->join('users', 'garages.users_id', '=', 'users.id')->select('garages.*', 'users.email', 'users.name', 'users.status', 'users.id as users_id')->paginate(10);
+
         return view('admin.garages', ['data' => $data]);
     }
 
-    public function addGarages(Request $request)
+    public function addGarages(GaragesRequest $request)
     {
         $input = $request->all();
 
-        if ($request->banner) {
-            $path = '/uploads/garages/';
-            $pathMove = 'uploads\garages';
-
-            $imageName = 'banner_' . time() . '._' . $input['name'] . '.' . $request->banner->extension();
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-
-            $request->banner->move(public_path($pathMove), $imageName);
-        } else {
-            $imageName = '';
-            $path = '';
-        }
-
         $garage = new Garages();
+        $users = new User();
 
-        $garage->name_garage = $input['name'];
-        $garage->path_of_banner = $path . $imageName;
+        $garage->name_garage = $input['name_garage'];
         $garage->phone = $input['phone'];
         $garage->address = $input['address'];
-        $garage->city = $input['city'];
 
+        $users->name = $input['name'];
+        $users->email = $input['email'];
+        $users->password = Hash::make($input['password']);
+        $users->email_verified_at = date("Y-m-d H:i:s");
+        $users->role = '2';
+        $users->address = $input['address'];
+        $users->phone = $input['phone'];
+        $users->status = 2;
+
+        $users->save();
+
+        $garage->users_id = $users->id;
         $garage->save();
 
-        return redirect('/admin/garages')->with('status', 'Garage added!');
+        return redirect('/admin/garages')->with('status', 'Hãng xe đã được thêm!');
     }
 
-    public function editGarages(Request $request)
+    public function editGarages(GaragesEditRequest $request)
     {
-        if ($request->banner) {
-            $path = '/uploads/garages/';
-            $pathMove = 'uploads\garages';
+        $garage = new Garages();
+        $users = new User();
+        $garage->where('id', $request->id)->update(['name_garage' => $request->name_garage, 'phone' => $request->phone, 'address' => $request->address]);
 
-            $imageName = 'banner_' . time() . '._' . $request->name . '.' . $request->banner->extension();
-            if (!file_exists($path)) {
-                mkdir($path, 0777, true);
-            }
-            $request->banner->move(public_path($pathMove), $imageName);
+        $users->where('id', $request->users_id)->update(['name' => $request->name]);
 
-            $garage = new Garages();
-            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'path_of_banner' => $path . $imageName, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
+        return redirect('/admin/garages')->with('status', 'Hãng xe thay đổi thành công!');
+    }
 
+    public function deleteGarages(Request $request)
+    {
+        $users = User::where('id', $request->users_id)->first();
+        $users->delete();
 
-        } else {
-            $imageName = '';
-            $path = '';
+        $garage = Garages::where('id', $request->id)->first();
+        $garage->delete();
 
-            $garage = new Garages();
-            $garage->where('id', $request->id)->update(['name_garage' => $request->name, 'phone' => $request->phone, 'address' => $request->address, 'city' => $request->city]);
+        $getEmployees = DB::table('users')->where('sub_user', $request->id)->get();
+        foreach ($getEmployees as $employee) {
+            $employee = User::where('id', $employee->id)->first();
+            $employee->delete();
         }
 
+        return redirect('/admin/garages')->with('status', 'Hãng xe xóa thành công!');
+    }
 
-        return redirect('/admin/garages')->with('status', 'Garage edited!');
+    public function statusGarages(Request $request)
+    {
+        if ($request->type == 'active') {
+            $users = new User();
+            $users->where('id', $request->id)->update(['status' => 1]);
+        } else {
+            $users = new User();
+            $users->where('id', $request->id)->update(['status' => 2]);
+        }
+
+        return redirect('/admin/garages')->with('status', 'Hãng xe thay đổi trạng thái thành công!');
     }
 }

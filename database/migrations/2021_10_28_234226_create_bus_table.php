@@ -17,7 +17,7 @@ class CreateBusTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('license_plate')->nullable();
-            $table->integer('garages_id');
+            $table->integer('garages_id')->nullable();
             $table->timestamps();
         });
     }

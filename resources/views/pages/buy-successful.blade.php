@@ -33,14 +33,13 @@
                     Thông tin vé
                 </div>
                 <div class="card-body">
-                    <p class="card-text">Ngày khởi hành : {{ $data->date }}</p>
-                    <p class="card-text">Giờ khởi hành : {{ $data->time_go }}</p>
-                    <p class="card-text">Địa điểm khởi hành : {{ $data->place_from }}</p>
-                    <p class="card-text">Địa điểm đến : {{ $data->place_to }}</p>
-                    <p class="card-text">Mã vé : {{ $data->code }}</p>
-                    <p class="card-text">Số ghế : {{ $data->seat }}</p>
-                    <p class="card-text">Tên xe : {{ $data->bus_name }}</p>
-                    <p class="card-text">Biển số : {{ $data->license_plate }}</p>
+                    <p class="card-text"><b>Mã vé </b> : {{ $data->payment_id }}</p>
+                    <p class="card-text"><b>Ngày khởi hành</b> : {{ $data->date }}</p>
+                    <p class="card-text"><b>Giờ khởi hành</b> : {{ $data->start }}</p>
+                    <p class="card-text"><b>Giờ đến nơi</b> : {{ $data->end }}</p>
+                    <p class="card-text"><b>Tuyến đường</b> : {{ $data->roads }}</p>
+                    <p class="card-text"><b>Biển số</b> : {{ $data->license_plate }}</p>
+                    <p class="card-text"><b>Gía vé</b> : {{ $data->cost }} ( Tổng : {{ $data->total_buy }} )</p>
                 </div>
             </div>
             <div class="col-md-4"></div>

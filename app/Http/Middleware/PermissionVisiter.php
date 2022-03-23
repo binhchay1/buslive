@@ -26,6 +26,10 @@ class PermissionVisiter
             return redirect('/email/verify');
         }
 
+        if(Auth::check() == true && Auth::user()->role == 3) {
+            return redirect('/error/permission');
+        }
+
         if (Auth::check() == false or Auth::user()->role === null) {
             return $next($request);
         } else {

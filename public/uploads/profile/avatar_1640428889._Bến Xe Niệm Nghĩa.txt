@@ -1,0 +1,6 @@
+# hoic-basic_mock
+html mocks for hoic-basic
+
+## 概要
+hoic-basicで利用している画面のモック開発環境です。
+public_html配下のディレクトリ構成はphp側の構成と合わせる形で作成してください。

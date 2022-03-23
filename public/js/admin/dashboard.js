@@ -1,143 +1,165 @@
+var mode = 'index';
+var intersect = true;
+var ticksStyle = {
+    fontColor: '#495057',
+    fontStyle: 'bold'
+}
+
+var datasetsSaleCurrent = [];
+var datasetsSaleLast = [];
+
+var datasetsAccess = [];
+
 $(document).ready(function () {
-    $(function () {
-        'use strict'
+    let d = new Date();
+    let currentYear = d.getFullYear();
+    getDataOrder();
+    getDataAnalysis('year', currentYear);
 
-        let ticksStyle = {
-            fontColor: '#495057',
-            fontStyle: 'bold'
-        }
+    $('#yearPicker').datepicker({
+        format: "yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    }).on('changeDate', function (ev) {
+        getDataAnalysis('year', ev.format());
+    });
 
-        let mode = 'index';
-        let intersect = true
-
-        let $salesChart = $('#sales-chart')
-        let salesChart = new Chart($salesChart, {
-            type: 'bar',
-            data: {
-                labels: ['JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
-                datasets: [
-                    {
-                        backgroundColor: '#007bff',
-                        borderColor: '#007bff',
-                        data: [1000, 2000, 3000, 2500, 2700, 2500, 3000]
-                    },
-                    {
-                        backgroundColor: '#ced4da',
-                        borderColor: '#ced4da',
-                        data: [700, 1700, 2700, 2000, 1800, 1500, 2000]
-                    }
-                ]
-            },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
-                    mode: mode,
-                    intersect: intersect
-                },
-                hover: {
-                    mode: mode,
-                    intersect: intersect
-                },
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            display: true,
-                            lineWidth: '4px',
-                            color: 'rgba(0, 0, 0, .2)',
-                            zeroLineColor: 'transparent'
-                        },
-                        ticks: $.extend({
-                            beginAtZero: true,
-                            callback: function (value) {
-                                if (value >= 1000) {
-                                    value /= 1000
-                                    value += 'k'
-                                }
-
-                                return '$' + value
-                            }
-                        }, ticksStyle)
-                    }],
-                    xAxes: [{
-                        display: true,
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: ticksStyle
-                    }]
-                }
-            }
-        })
-
-        let $visitorsChart = $('#visitors-chart')
-        let visitorsChart = new Chart($visitorsChart, {
-            data: {
-                labels: ['18th', '20th', '22nd', '24th', '26th', '28th', '30th'],
-                datasets: [{
-                    type: 'line',
-                    data: [100, 120, 170, 167, 180, 177, 160],
-                    backgroundColor: 'transparent',
-                    borderColor: '#007bff',
-                    pointBorderColor: '#007bff',
-                    pointBackgroundColor: '#007bff',
-                    fill: false,
-                    pointHoverBackgroundColor: '#007bff',
-                    pointHoverBorderColor: '#007bff'
-                },
-                {
-                    type: 'line',
-                    data: [60, 80, 70, 67, 80, 77, 100],
-                    backgroundColor: 'tansparent',
-                    borderColor: '#ced4da',
-                    pointBorderColor: '#ced4da',
-                    pointBackgroundColor: '#ced4da',
-                    fill: false,
-                    pointHoverBackgroundColor: '#ced4da',
-                    pointHoverBorderColor: '#ced4da'
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                tooltips: {
-                    mode: mode,
-                    intersect: intersect
-                },
-                hover: {
-                    mode: mode,
-                    intersect: intersect
-                },
-                legend: {
-                    display: false
-                },
-                scales: {
-                    yAxes: [{
-                        gridLines: {
-                            display: true,
-                            lineWidth: '4px',
-                            color: 'rgba(0, 0, 0, .2)',
-                            zeroLineColor: 'transparent'
-                        },
-                        ticks: $.extend({
-                            beginAtZero: true,
-                            suggestedMax: 200
-                        }, ticksStyle)
-                    }],
-                    xAxes: [{
-                        display: true,
-                        gridLines: {
-                            display: false
-                        },
-                        ticks: ticksStyle
-                    }]
-                }
-            }
-        })
+    $('#monthPicker').datepicker({
+        format: "mm-yyyy",
+        startView: "months",
+        minViewMode: "months"
+    }).on('changeDate', function (ev) {
+        getDataAnalysis('month', ev.format());
     });
 });
 
+function getDataOrder() {
+    $.ajax({
+        url: '/admin/getanalystorder',
+        type: 'GET'
+    }).done(function (response) {
+        let dataAjax = response['each_month'];
+        let datasetsOrderCurrent = [];
 
+        for (let i = 0; i < dataAjax.length; i++) {
+            datasetsOrderCurrent.push(dataAjax[i][0]);
+        }
 
+        document.getElementById('total-order').innerHTML = response.total;
 
+        let salesChartCanvas = document.getElementById('revenue-chart-canvas').getContext('2d')
+
+        let salesChartData = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [
+                {
+                    label: 'Digital Goods',
+                    backgroundColor: 'rgba(60,141,188,0.9)',
+                    borderColor: 'rgba(60,141,188,0.8)',
+                    pointRadius: false,
+                    pointColor: '#3b8bba',
+                    pointStrokeColor: 'rgba(60,141,188,1)',
+                    pointHighlightFill: '#fff',
+                    pointHighlightStroke: 'rgba(60,141,188,1)',
+                    data: datasetsOrderCurrent
+                },
+            ]
+        }
+
+        let salesChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            legend: {
+                display: false
+            },
+            scales: {
+                xAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            }
+        }
+
+        let salesChart = new Chart(salesChartCanvas, {
+            type: 'line',
+            data: salesChartData,
+            options: salesChartOptions
+        })
+    });
+}
+
+function getDataAnalysis(type, date) {
+    $.ajax({
+        url: '/admin/getdataanalysis',
+        type: 'GET',
+        data: {
+            type: type,
+            date: date
+        },
+    }).done(function (response) {
+        let text = '';
+        if (type == 'year') {
+            text = 'năm ' + date;
+        } else {
+            let split = date.split('-');
+            let month = split[0];
+            let year = split[1];
+            text = 'tháng ' + month + ' năm ' + year;
+        }
+        document.getElementById('date-card-text').innerHTML = text;
+
+        let checkNull = 0;
+        if (typeof response.datasets[0].data !== 'undefined' && response.datasets[0].data !== false) {
+            for (let i = 0; i < response.datasets[0].data.length; i++) {
+                if (response.datasets[0].data[i] > 0) {
+                    checkNull = 1;
+                }
+            }
+        }
+
+        if (checkNull == 0) {
+            $('#message-none').attr('class', '');
+            $('#message-none').attr('class', 'd-flex justify-content-center');
+        }
+
+        let pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+        let pieData = response;
+        let pieOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+        }
+
+        new Chart(pieChartCanvas, {
+            type: 'pie',
+            data: pieData,
+            options: pieOptions
+        })
+    });
+}
+
+function formatDate(date) {
+    let dd = date.getDate();
+    let mm = date.getMonth() + 1;
+    let yyyy = date.getFullYear();
+    if (dd < 10) { dd = '0' + dd }
+    if (mm < 10) { mm = '0' + mm }
+    date = yyyy + '-' + mm + '-' + dd
+    return date
+}
+
+function Last7Days() {
+    let result = [];
+    for (let i = 0; i < 7; i++) {
+        let d = new Date();
+        d.setDate(d.getDate() - i);
+        result.push(formatDate(d))
+    }
+
+    return result;
+}

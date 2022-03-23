@@ -40,6 +40,16 @@
     height: 35px;
 }
 
+#bus-seat button:focus {
+    background-color: rgb(139, 91, 46) !important;
+    color: white !important;
+}
+
+#bus-seat-back button:focus {
+    background-color: rgb(139, 91, 46) !important;
+    color: white !important;
+}
+
 #bus-seat-back span {
     background-color: aqua;
     margin: 5px;
@@ -59,21 +69,12 @@
     float: right
 }
 
-h1 {
-    text-transform: uppercase;
-    font-weight: 900;
-    border-left: 10px solid #fec500;
-    padding-left: 10px;
-    margin-bottom: 30px
-}
-
 .row {
     overflow: hidden
 }
 
 .card {
     display: table-row;
-    width: 49%;
     background-color: #fff;
     color: #989898;
     margin-bottom: 10px;
